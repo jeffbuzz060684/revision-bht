@@ -73,6 +73,7 @@ hr{border:0; border-top:1px dashed var(--line); margin:.6rem 0}
 .tips{background:#15203a; border-radius:.8rem; padding:.55rem .75rem; margin:.45rem 0; font-size:.9rem}
 .tips.ccl{border-left:3px solid var(--ok)}
 .tips.qj{border-left:3px solid var(--warn)}
+.chip-ok{display:inline-block;margin-left:.5em;padding:.1em .6em;border-radius:1em;background:#1d4d2b;color:#9fe0ae;font-size:.8rem}
 .warn{color:var(--warn); font-size:.78rem}
 .note{margin-top:.55rem}
 .foot{color:var(--mut); font-size:.78rem; margin:.6rem .2rem}
@@ -128,7 +129,7 @@ textarea{width:100%; background:#151c36; color:var(--txt); border:1px solid var(
 <nav class="tabbar" id="tabbar"></nav>
 <script>
 var D = {
-META:{version:"v1",date:"08/11/2026",titre:"Révision BHT",sub:"Brevet de Haute Technicité — Chef de groupe BMPM",src:"Contenu vérifié depuis les documents Drive BHT 2026-27"},
+META:{version:"v2",date:"08/11/2026",titre:"Révision BHT",sub:"Brevet de Haute Technicité — Chef de groupe BMPM",src:"Contenu vérifié depuis les documents Drive BHT 2026-27"},
 
 CALAGE:[
  {t:"0:00–1:30",p:"Introduction",d:"Accroche factuelle (chiffre/événement) → définition en 1 phrase → problématique → annonce du plan"},
@@ -693,7 +694,118 @@ CDG:{
  role:["Traduire la doctrine en geste : FMPA, entraînement, tutorat pré-BAT de mes équipiers","Remonter le RETEX — première source d'innovation et de propositions de décorations","Premier échelon de soutien : habilitations, maintenance, détection de la fatigue et de la décroche","Sécuriser ses équipes : sur-attentat (NOVI), ouvrants, énergie, autonomie ARI","Interface COS ↔ équipiers : SMES clairs, missions par fonction, transmissions","Former ceux qui formeront : préparer mes BS aux promotions — la pyramide tient par moi"],
  chiffres:[["2 035","marins-pompiers (2 554 agents) — plus grosse unité de la Marine"],["17","CIS (26 sites)"],["~122 000","interventions/an · ~1 000 appels/jour"],["350 / 170","MP socle 24/7/365 / MP dédiés FDF en saison"],["43–45","CCF pré-positionnés les jours à risque FDF"],["40","MP projetables en 2 h (CAPINAV, T0+2 h)"],["~20 sem.","de cours BHT ; CSUP/CDM ~22 ans de service, flux ~12/an"],["4 + 6","ans : chef de groupe OPS puis poste organique cadre de maîtrise"]],
  methode:"Le calage 10 minutes (oral) : intro 1 min 30 (accroche, définition, problématique, plan) · 2-3 parties 7 min (chiffres + exemples + rôle chef de groupe) · conclusion 1 min 30 (réponse, synthèse, ouverture). Le DTP : 2 h, 4 rubriques = barème 4/6/4/6."
-}
+},
+
+HORIZON:[
+{n:1,ic:"🚨",titre:"Sécurité civile",src:"« Organisation de la sécurité civile » + SC-C1 (Drive)",
+ sections:[
+ {t:"Cadre : la loi du 13 août 2004",pts:[
+  "Loi n° 2004-811 du 13 août 2004 de modernisation de la sécurité civile — objet : prévention des risques de toute nature + protection des personnes, des biens et de l'environnement contre accidents, sinistres et catastrophes",
+  "Elle instaure le plan communal de sauvegarde (PCS) et la réserve communale de sauvegarde — le PCS est obligatoire dans les communes soumises à un risque majeur"]},
+ {t:"Les 4 niveaux d'organisation",pts:[
+  "3 autorités de police administrative générale : le maire (commune), le préfet (département), le Premier ministre (national) — + la zone de défense et de sécurité en appui (planning, moyens, coordination supra-départementale)",
+  "National : ministre de l'Intérieur → DGSCGC (COGIC), et CIC (cellule interministérielle de crise) pour les crises majeures nationales",
+  "Départemental : préfet → SIPDC + SDIS/SDMIS (CODIS/CTA) ; Communal : maire → CIS/CS/CPI"]},
+ {t:"Maire et préfet : qui dirige ?",pts:[
+  "Le maire est le premier DOS (directeur des opérations de secours) : alerte et information des populations, appui aux services d'urgence, soutien des populations, information des autorités",
+  "Le préfet prend la DOS quand : le maire ne maîtrise plus (ou s'abstient), l'événement concerne plusieurs communes, ou la gravité dépasse les capacités locales — il est épaulé par le COS et s'appuie sur le dispositif ORSEC",
+  "Le préfet de zone : coordination et moyens (pas de pouvoir de police générale) ; ORSEC = seule doctrine interservices de portée réglementaire au niveau territorial"]}],
+ quiz:[
+ {q:"Quelle loi fixe les principes actuels de la sécurité civile française ?",opts:["La loi du 13 août 2004","La loi du 22 juillet 1987","Le décret ORSEC de 2006","La loi de 1955 état d'urgence"],a:0,ex:"Loi n° 2004-811 de modernisation de la sécurité civile : prévention + protection des personnes, biens, environnement."},
+ {q:"Qui est le premier directeur des opérations de secours (DOS) ?",opts:["Le préfet","Le maire","Le commandant des opérations","Le directeur du SDIS"],a:1,ex:"Le maire est le premier DOS ; le préfet se substitue à lui si nécessaire (crise multi-communale, gravité, carence)."},
+ {q:"Qu'instaure la loi de 2004 à l'échelon communal ?",opts:["Le PCS et la réserve communale de sauvegarde","Le SDIS","Le plan Vigipirate","La réserve citoyenne"],a:0,ex:"Plan communal de sauvegarde + réserve communale — outils du pouvoir de police du maire en situation d'urgence."},
+ {q:"Qui coordonne une crise majeure nationale au sein du CIC ?",opts:["Le ministre de la Défense","Le Premier ministre lui-même toujours","Le ministre de l'Intérieur en principe","Le CEMA"],a:2,ex:"Pour une crise majeure sur le territoire national, le ministre de l'Intérieur assure en principe la coordination gouvernementale au sein de la cellule interministérielle de crise."}]},
+
+{n:2,ic:"⚓",titre:"Marine nationale",src:"« La marine nationale » (DIM 2021, Drive)",
+ sections:[
+ {t:"Pourquoi une marine ?",pts:[
+  "Domaine maritime français : 11 millions de km² — 2e ZEE mondiale derrière les USA ; 90 % du commerce mondial par voie maritime ; 99 % des télécommunications par câbles sous-marins ; 70 % de la population à moins de 100 km des côtes",
+  "La mer = l'avenir de la terre : enjeux démographiques, économiques et militaires du contrôle des océans"]},
+ {t:"Les 4 missions : dissuader, protéger, prévenir, intervenir",pts:[
+  "Dissuader : FOST (4 SNLE, dont au moins 1 en mer en permanence) + FANu (PA Charles de Gaulle, Rafale marine)",
+  "Protéger : PPSM = DMT (sentinelle des mers, ~20 000 km de côtes) + AEM (action de l'État en mer) ; lutte antipollution ; +300 vies/an sauvées ; CAPINAV projetable en cas de sinistre en mer",
+  "Prévenir : capteurs, connaissance des zones de crise ; piraterie, pêche illicite (17 t de stupéfiants saisis en 2019) ; présence permanente Méditerranée orientale + océan Indien ; Grand Nord ; SHOM",
+  "Intervenir : GAN projection de puissance (indépendant des autorisations d'états tiers), missile MdCN, PHA projection de force, commandos marine"]},
+ {t:"Ressources, structure, ordre de bataille",pts:[
+  "39 000 marins (13 % officiers / 65 % OM / 22 % équipage), 3 000 civils, 6 500 réservistes, ~15 % de femmes (5 825) ; 4 000 recrutements/an, 16-30 ans",
+  "2 chaînes de commandement : organique (préparation des forces — CEMM : ALFAN, ALFOST, ALAVIA, ALFUSCO, COMGENDMAR) / opérationnelle (emploi — CEMA : préfets maritimes, CDT de zone maritime)",
+  "~200 bâtiments, 170 aéronefs : 1 PA, 3 PHA, 23 frégates, 17 patrouilleurs, 10 chasseurs de mines, 4 SNLE, SNA Rubis → Suffren (6 d'ici 2030), 41 Rafale marine",
+  "3 ports principaux : Toulon (60 % de la flotte), Brest, Cherbourg"]}],
+ quiz:[
+ {q:"Quelles sont les 4 missions de la Marine nationale ?",opts:["Dissuader, protéger, prévenir, intervenir","Protéger, surveiller, secourir, dissuader","Défendre, connaître, projeter, sauver","Surveiller, intervenir, former, dissuader"],a:0,ex:"Dissuader (FOST/FANu), protéger (PPSM = DMT + AEM), prévenir (capteurs, présence), intervenir (GAN, MdCN, PHA)."},
+ {q:"Combien de SNLE et combien en mer en permanence ?",opts:["4 SNLE, au moins 1 en mer","3 SNLE, au moins 2 en mer","4 SNLE, 2 en mer","6 SNLE, 1 en mer"],a:0,ex:"FOST : Le Triomphant, Le Téméraire, Le Vigilant, Le Terrible — au moins 1 patrouille en permanence depuis 48 ans."},
+ {q:"Que regroupe la Posture Permanente de Sauvegarde Maritime (PPSM) ?",opts:["DMT + AEM","FOST + FANu","GAN + MdCN","SHOM + CAPINAV"],a:0,ex:"Défense Maritime du Territoire (sentinelle des côtes) + Action de l'État en Mer (service public en mer)."},
+ {q:"Quel port principal accueille environ 60 % de la flotte ?",opts:["Brest","Toulon","Cherbourg","Lorient"],a:1,ex:"Toulon concentre 60 % de la flotte ; les autres ports principaux sont Brest et Cherbourg."}]},
+
+{n:3,ic:"🛡️",titre:"Prévention & RCCI",src:"PREV JS + « Synthèse prévention OPS/RCCI » (Drive)",
+ sections:[
+ {t:"Définitions et objectifs",pts:[
+  "Prévention = empêcher le sinistre d'exister ; prévision = penser qu'il va exister et prendre les mesures nécessaires",
+  "4 objectifs de la prévention : éviter l'éclosion du feu · évacuer et protéger les personnes · limiter la propagation · faciliter l'accès et l'action des intervenants"]},
+ {t:"Les 3 temps de la prévention en opération",pts:[
+  "Avant : prévision tactique (connaissance du secteur, PIM, ETARE) + technique (détection, alarme, alerte, moyens de secours)",
+  "Pendant : accès aux structures, progression en sécurité, cantonnement du sinistre, désenfumage des communs, sécurité des intervenants",
+  "Après : fiches anomalies/liaison, garde prévention BMPM (depuis 2013, conseiller technique PRV2 pour le COS), RETEX, cellule RCCI"]},
+ {t:"La mission RCCI",pts:[
+  "Recherche des Causes et Circonstances des Incendies — circulaire ministérielle du 23/03/2011 ; créée au BMPM en 2014 (après la condamnation du SDIS du Calvados 2011, feux du Var 2003)",
+  "Investigateur : PRV2 + module RCCI ENSOSP, GOC 3/4 ; astreinte = 1 cadre PREV + binôme (investigateur + prévisionniste)",
+  "RCCI URBAIN : div PREV, sans convention procureur ; RCCI FDF : div OPS, convention avec le procureur — peut être mandatée avec un scientifique de l'ONF",
+  "Objectifs : améliorer la prévention, base de données nationale, sécurité des intervenants, RETEX, faire évoluer les comportements ; le COS intègre la PTI (protection des traces et indices)"]},
+ {t:"Chiffres clés à connaître",pts:[
+  "ERP : 22 types, 5 catégories — 1re : plus de 1 500 personnes ; 2e : 701-1500 ; 3e : 301-700 ; 4e : moins de 300 ; 5e : sous le seuil d'assujettissement",
+  "Règlements sécurité incendie : ERP 1er groupe 25/06/1980, ERP 2e groupe 22/06/1990, habitation 31/01/1986, IGH 30/12/2011, PSC 09/05/2006",
+  "Voie engins : 3 m de large, 3,5 m de haut, pente < 15 % ; voie échelles : 4 m de large, 10 m de long, pente ≤ 10 %",
+  "Familles d'habitation : 1re (R+1 max), 2e (R+3 max), 3e A/B (plancher bas ≤ 28 m), 4e (28-50 m) ; SSI : 5 catégories A à E ; réaction au feu M0 (incombustible) à M4",
+  "Victimes d'incendies en France : -60 % en 30 ans — le concept prévention/prévision/opération/RCCI/RETEX s'auto-alimente"]}],
+ quiz:[
+ {q:"Quels sont les 4 objectifs de la prévention ?",opts:["Éviter l'éclosion · évacuer/protéger les personnes · limiter la propagation · faciliter l'action des intervenants","Empêcher, détecter, alerter, éteindre","Protéger, secourir, enquêter, former","Concevoir, construire, exploiter, contrôler"],a:0,ex:"Les 4 fonctions de la prévention en cas d'incendie (synthèse prévention OPS/RCCI)."},
+ {q:"Le RCCI a été créé au BMPM en…",opts:["2011","2013","2014","2017"],a:2,ex:"2014 (circulaire ministérielle 23/03/2011 ; contexte : condamnation SDIS Calvados 2011, feux du Var 2003). La garde prévention date, elle, de 2013."},
+ {q:"À partir de combien de personnes un ERP relève-t-il de la 1re catégorie ?",opts:["Plus de 1 500 personnes","Plus de 700","Plus de 300","Plus de 100"],a:0,ex:"1re : >1500 ; 2e : 701-1500 ; 3e : 301-700 ; 4e : <300 ; 5e : sous le seuil d'assujettissement."},
+ {q:"Largeur réglementaire : voie engins / voie échelles ?",opts:["3 m / 4 m","4 m / 3 m","3,5 m / 10 m","2,5 m / 3,5 m"],a:0,ex:"Voie engins : 3 m de large (3,5 m de haut, pente <15 %) ; voie échelles : 4 m de large, 10 m de long, pente ≤10 %."}]},
+
+{n:4,ic:"🎖️",titre:"Organisation du BMPM",src:"IP 1.1 — Organisation générale du BMPM (Drive)",
+ sections:[
+ {t:"Un SDIS militaire",pts:[
+  "Le BMPM = unité de la Marine nationale à compétence territoriale, investie d'une mission de sécurité civile — un SDIS à part entière ; organisation régie par l'IP 1.1 (revue 31/10/2018) et la directive IG 14 du 24/06/2010",
+  "Double subordination : le maire de Marseille (emploi des forces, police sécurité civile) + le CECMED (organisation militaire) ; financé par la ville — pas intégré à une base de défense",
+  "Le commandant du BMPM cumule : DGASSI (directeur général adjoint des services de secours et d'incendie de la Ville) + CDT de l'EMPM + COMAR"]},
+ {t:"Les 6 divisions de l'état-major",pts:[
+  "OPS (conduite : COSSIM, STAT, BASGO) · PVT (prévention, sous-commission départementale de sécurité) · ENT/FORM (formation, EMPM, spécialité MAPOM)",
+  "ETU (SDACR, ROD, doctrine, IBN, CET 2 fois/an) · PERS/AG/ORG (activités organiques militaires) · SC/AJ (soutien commun, affaires juridiques)",
+  "+ l'ADGSSI : agent de la Ville de Marseille, interface entre le BMPM et la municipalité"]},
+ {t:"3 niveaux fonctionnels + 4 chaînes permanentes",pts:[
+  "Niveaux : commandement / direction / conduite — principe de subsidiarité pour éviter les doublons",
+  "4 chaînes fonctionnelles activées en permanence : conduite des opérations (chef OPS) · prévention/RCCI (chef PREV) · service courant (chef AGO) · sécurité HSE (CSD)",
+  "Couverture : risque courant (ROD) + risque particulier/complexe (6 SOS + EOS NRBC, menace attentat intégrée) — IP commandant n° 5.1"]},
+ {t:"Unités et spécificités",pts:[
+  "Groupement Nord (10 CIS + 1 PA OCG) · Groupement Sud (8 CIS) · Groupement Appui/Soutien (LOG, TEC, SIC, flotte) · secteur MGN · GSN (santé : SMU, SMUR, SSSM)",
+  "Depuis juillet 2017, le commandant du BMPM est expert technique au service incendie et de secours de la Marine (audit des bases navales/aéronavales)",
+  "Pôle audit expertise créé en 2018 : audits internes et externes, RETEX"]}],
+ quiz:[
+ {q:"Quelle est la double subordination du BMPM ?",opts:["Maire de Marseille + CECMED","Préfet + CEMA","Ville + SDIS 13","Ministre de l'Intérieur + Marine"],a:0,ex:"Le maire pour l'emploi des forces et la police de sécurité civile ; le CECMED pour l'organisation militaire. Financé par la Ville."},
+ {q:"Combien de divisions composent l'état-major du BMPM ?",opts:["4","5","6","8"],a:2,ex:"OPS, PVT, ENT/FORM, ETU, PERS/AG/ORG, SC/AJ (+ l'ADGSSI côté Ville)."},
+ {q:"Composition des groupements d'intervention ?",opts:["Nord 10 CIS + 1 PA · Sud 8 CIS · Appui/Soutien","Nord 8 CIS · Sud 10 CIS","Nord 12 CIS · Sud 6 CIS","Nord 5 CIS · Sud 5 CIS · Centre 2"],a:0,ex:"Groupement Nord : 10 CIS + 1 PA OCG ; Groupement Sud : 8 CIS ; Groupement Appui/Soutien (LOG/TEC/SIC/flotte)."},
+ {q:"Depuis quand le commandant du BMPM est-il expert technique sécurité incendie de la Marine ?",opts:["Juillet 2017","2014","2018","2010"],a:0,ex:"Depuis juillet 2017 — il audite la partie sécuritaire des bases navales et aéronavales. Pôle audit expertise créé en 2018."}]},
+
+{n:5,ic:"🇫🇷",titre:"Défense & LPM",src:"LPM 2019-2025 (synthèse) + DIM (Drive)",
+ sections:[
+ {t:"La LPM 2019-2025 « de renouveau »",pts:[
+  "LPM = loi de programmation militaire : cadre budgétaire pluriannuel des armées ; la LPM 2019-2025 est la première étape de l'Ambition 2030 voulue par le Président",
+  "198 milliards d'euros sur les 5 premières années ; 295 Mds € programmés sur 2019-2025 ; budget des armées porté à 39,6 Mds €/an en moyenne (hors pensions)",
+  "Objectif : 2 % du PIB d'effort de défense à horizon 2025 (1,91 % en 2023, contre 1,78 % en 2017) ; OPEX/missions intérieures provisionnées à 1,1 Md €/an dès 2020"]},
+ {t:"Les 5 fonctions stratégiques de la défense",pts:[
+  "Connaître et anticiper · prévenir · dissuader · protéger · intervenir — le socle des aptitudes du modèle d'armée complet et équilibré",
+  "Environnement : risque terroriste persistant, retour des politiques de puissance, affaiblissement de l'ordre international (Revue stratégique 2017)"]},
+ {t:"4 axes et apports pour la Marine",pts:[
+  "Axe 1 « à hauteur d'homme » : +6 000 postes (dont 3 000 renseignement/numérique), plan famille, quotidien du soldat",
+  "Axe 2 renouveler les capacités : Marine — 4 BARRACUDA, 8 FREMM et 2 FTI livrés en 2025 ; axes 3-4 : innovation et coopérations [détails à vérifier]",
+  "NB : une LPM postérieure (2025-2030) existe — actualiser avec le DIM le plus récent avant le jour J [à actualiser]"]}],
+ quiz:[
+ {q:"Quelles sont les 5 fonctions stratégiques de la défense ?",opts:["Connaître et anticiper · prévenir · dissuader · protéger · intervenir","Dissuader, protéger, intervenir, secourir, former","Connaître, décider, projeter, protéger, négocier","Anticiper, dissuader, intervenir, surveiller, former"],a:0,ex:"Ambition 2030 : connaître et anticiper, prévenir, dissuader, protéger, intervenir."},
+ {q:"Quel objectif d'effort de défense la LPM 2019-2025 fixait-elle ?",opts:["2 % du PIB à horizon 2025","1,5 % du PIB","3 % du PIB","2,5 % du PIB en 2030"],a:0,ex:"Porter l'effort de défense à 2 % de la richesse nationale à horizon 2025 (1,91 % prévu en 2023)."},
+ {q:"Combien de sous-marins BARRACUDA livrés en 2025 selon la LPM ?",opts:["4","2","6","8"],a:0,ex:"4 BARRACUDA (SNA), plus 8 FREMM et 2 FTI livrés en 2025 pour la Marine."},
+ {q:"La LPM 2019-2025 est la première étape de…",opts:["L'Ambition 2030","La Revue stratégique 2017","Le Livre blanc 2013","Le pacte de défense européen"],a:0,ex:"LPM « de renouveau » = première étape vers le modèle d'armée complet et équilibré de l'Ambition 2030."}]}
+]
 };
 
 </script>
@@ -701,12 +813,12 @@ CDG:{
 (function(){
 "use strict";
 var D=window.D;
-var K={prog:"bht-prog-v1",quiz:"bht-quiz-v1",dtp:"bht-dtp-v1",notes:"bht-notes-v1",ui:"bht-ui-v1"};
+var K={prog:"bht-prog-v1",quiz:"bht-quiz-v1",dtp:"bht-dtp-v1",notes:"bht-notes-v1",ui:"bht-ui-v1",hor:"bht-hor-v1"};
 var STATES=["afaire","fiche","quiz","pret"];
 var SLBL={afaire:"À faire",fiche:"Fiche faite",quiz:"Quiz réussi",pret:"PRÊT ORAL"};
 var SEMO={afaire:"○",fiche:"◔",quiz:"◕",pret:"●"};
 var SCL={afaire:"#e05b4b",fiche:"#e0a83b",quiz:"#4ba6e0",pret:"#3fce6b"};
-var ALLQ=[];
+var ALLQ=[];var HQ=[];
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 function ls(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
 function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
@@ -714,14 +826,23 @@ function loadState(){
   var prog=ls(K.prog,null)||{};
   D.THEMES.forEach(function(t){if(!prog[t.n])prog[t.n]=t.etat||"afaire";});
   var ui=ls(K.ui,null)||{tab:"home",theme:0,qmode:"theme",qsel:1};
-  return {prog:prog,ui:ui,quiz:ls(K.quiz,null)||{},dtp:ls(K.dtp,null)||{},notes:ls(K.notes,null)||{}};
+  return {prog:prog,ui:ui,quiz:ls(K.quiz,null)||{},dtp:ls(K.dtp,null)||{},notes:ls(K.notes,null)||{},hor:ls(K.hor,null)||{}};
 }
 var S=loadState();
-function save(){sv(K.prog,S.prog);sv(K.ui,S.ui);sv(K.quiz,S.quiz);sv(K.dtp,S.dtp);sv(K.notes,S.notes);}
+function save(){sv(K.prog,S.prog);sv(K.ui,S.ui);sv(K.quiz,S.quiz);sv(K.dtp,S.dtp);sv(K.notes,S.notes);sv(K.hor,S.hor);}
 function theme(n){for(var i=0;i<D.THEMES.length;i++){if(D.THEMES[i].n===n)return D.THEMES[i];}return null;}
 function buildQuiz(){
   ALLQ=[];
   D.THEMES.forEach(function(t){t.quiz.forEach(function(q,i){ALLQ.push({n:t.n,titre:t.titre,q:q,i:i});});});
+  HQ=[];
+  D.HORIZON.forEach(function(h){h.quiz.forEach(function(q,i){HQ.push({hid:h.n,titre:h.titre,q:q,i:i});});});
+}
+function hqTot(hid){
+  var h=null;D.HORIZON.forEach(function(x){if(x.n===hid)h=x;});
+  if(!h)return{ok:0,tot:0};
+  var q=S.quiz["h"+hid];var ok=0;
+  h.quiz.forEach(function(x,i){if(q&&q[i])ok++;});
+  return{ok:ok,tot:h.quiz.length};
 }
 function progPct(){
   var v={afaire:0,fiche:1,quiz:2,pret:3},tot=0,sum=0;
@@ -780,8 +901,17 @@ function quizStart(mode,n){
   if(mode==="theme"){
     var t=theme(n);Q.list=ALLQ.filter(function(x){return x.n===n;}).map(function(x){return{x:x,done:false,ok:false};});
     Q.themeN=n;
+  }else if(mode==="hor"){
+    Q.list=HQ.filter(function(x){return x.hid===n;}).map(function(x){return{x:x,done:false,ok:false};});
+    Q.themeN=n;
+  }else if(mode==="allh"){
+    var arrh=HQ.slice();
+    for(var ih=arrh.length-1;ih>0;ih--){var jh=Math.floor(Math.random()*(ih+1)),tmph=arrh[ih];arrh[ih]=arrh[jh];arrh[jh]=tmph;}
+    Q.list=arrh.map(function(x){return{x:x,done:false,ok:false};});
   }else if(mode==="fail"){
-    var f=[];D.THEMES.forEach(function(t){var z=S.quiz[t.n]||{};t.quiz.forEach(function(q,i){if(z[i]===false)f.push({n:t.n,titre:t.titre,q:q,i:i});});});
+    var f=[];
+    D.THEMES.forEach(function(t){var z=S.quiz[t.n]||{};t.quiz.forEach(function(q,i){if(z[i]===false)f.push({n:t.n,titre:t.titre,q:q,i:i});});});
+    D.HORIZON.forEach(function(h){var z=S.quiz["h"+h.n]||{};h.quiz.forEach(function(q,i){if(z[i]===false)f.push({hid:h.n,titre:h.titre,q:q,i:i});});});
     Q.list=f.map(function(x){return{x:x,done:false,ok:false};});
   }else{
     var arr=ALLQ.slice();
@@ -797,10 +927,13 @@ function quizAnswer(oi){
   var cur=Q.list[Q.idx],ok=(oi===cur.x.q.a);
   cur.done=true;cur.ok=ok;
   if(ok)Q.score++;
-  var qz=S.quiz[cur.x.n]=S.quiz[cur.x.n]||{};
+  var key=cur.x.hid?("h"+cur.x.hid):(""+cur.x.n);
+  var qz=S.quiz[key]=S.quiz[key]||{};
   qz[cur.x.i]=ok;
-  var t=theme(cur.x.n),z=quizTot(t);
-  if(z.ok>=z.tot&&(S.prog[t.n]==="fiche"||S.prog[t.n]==="afaire"))S.prog[t.n]="quiz";
+  if(!cur.x.hid){
+    var t=theme(cur.x.n),z=quizTot(t);
+    if(z.ok>=z.tot&&(S.prog[t.n]==="fiche"||S.prog[t.n]==="afaire"))S.prog[t.n]="quiz";
+  }
   save();renderApp("quiz");
 }
 function quizNext(){
@@ -820,7 +953,7 @@ function renderApp(tab){
   if(lastTab!==S.ui.tab){window.scrollTo(0,0);lastTab=S.ui.tab;}
 }
 function tabbar(){
-  var tabs=[["home","🏠","Accueil"],["oral","🎤","Oral"],["quiz","✅","Quiz"],["dtp","✍️","DTP"],["chrono","⏱️","Chrono"],["cdg","⭐","CDG"]];
+  var tabs=[["home","🏠","Accueil"],["oral","🎤","Oral"],["quiz","✅","Quiz"],["dtp","✍️","DTP"],["chrono","⏱️","Chrono"],["cdg","⭐","CDG"],["horizon","🌍","Horizon"]];
   return tabs.map(function(t){
     return '<button class="tb'+(S.ui.tab===t[0]?" on":"")+'" onclick="window.__BHT_APP.tab(\''+t[0]+'\')"><span class="tb-i">'+t[1]+'</span><span class="tb-l">'+t[2]+'</span></button>';
   }).join("");
@@ -831,6 +964,7 @@ function viewTab(t){
   if(t==="dtp")return viewDTP();
   if(t==="chrono")return viewChrono();
   if(t==="cdg")return viewCDG();
+  if(t==="horizon")return viewHorizon();
   return viewHome();
 }
 function head(t,s){return '<div class="head"><h1>'+t+'</h1><p class="sub">'+s+'</p></div>';}
@@ -854,6 +988,7 @@ function viewHome(){
    '<button class="btn sm" onclick="window.__BHT_APP.quizStart(\'all\',0)">Marathon quiz</button>'+
    '<button class="btn sm" onclick="window.__BHT_APP.tab(\'dtp\')">Épreuve écrite</button>'+
    '<button class="btn sm" onclick="window.__BHT_APP.tab(\'cdg\')">Fiche chef de groupe</button>'+
+   '<button class="btn sm" onclick="window.__BHT_APP.tab(\'horizon\')">🌍 Hors-thèmes</button>'+
    '<button class="btn sm" onclick="window.__BHT_APP.quizStart(\'fail\',0)">Mes erreurs</button></div></div>';
   return h;
 }
@@ -885,8 +1020,9 @@ function viewOral(){
 function viewQuiz(){
   if(Q.list.length&&Q.idx<Q.list.length){
     var cur=Q.list[Q.idx],q=cur.x.q;
-    var h=head("✅ Quiz — "+(Q.lastMode==="theme"?"thème "+cur.x.n:Q.lastMode==="fail"?"mes erreurs":"marathon"),"Question "+(Q.idx+1)+" / "+Q.list.length+" · Score : "+Q.score);
-    h+='<div class="card qcard"><div class="qmeta">Thème '+cur.x.n+' — '+esc(cur.x.titre)+'</div>';
+    var label=Q.lastMode==="hor"||Q.lastMode==="allh"?"Horizon — "+esc(cur.x.titre):"thème "+cur.x.n;
+    var h=head("✅ Quiz — "+(Q.lastMode==="theme"?"thème "+cur.x.n:Q.lastMode==="fail"?"mes erreurs":Q.lastMode==="hor"?"horizon "+cur.x.titre:Q.lastMode==="allh"?"marathon horizon":"marathon"),"Question "+(Q.idx+1)+" / "+Q.list.length+" · Score : "+Q.score);
+    h+='<div class="card qcard"><div class="qmeta">'+label+'</div>';
     h+='<div class="qq">'+esc(q.q)+'</div><div class="opts">';
     q.opts.forEach(function(o,i){
       var cls="opt";
@@ -906,7 +1042,7 @@ function viewQuiz(){
   }
   if(Q.list.length&&Q.idx>=Q.list.length){
     var pctq=Math.round(100*Q.score/Q.list.length);
-    var h=head("✅ Résultat",Q.lastMode==="theme"?"Thème "+Q.themeN:Q.lastMode==="fail"?"Mes erreurs":"Marathon");
+    var h=head("✅ Résultat",Q.lastMode==="theme"?"Thème "+Q.themeN:Q.lastMode==="fail"?"Mes erreurs":Q.lastMode==="hor"?"Horizon "+Q.themeN:Q.lastMode==="allh"?"Marathon horizon":"Marathon");
     h+='<div class="card center"><div class="bigscore">'+Q.score+' / '+Q.list.length+'</div><div class="'+(pctq>=80?"good":"bad")+'">'+pctq+'% — '+(pctq>=80?"Validé ✔":pctq>=50?"Presque — refais-le":"À retravailler")+'</div></div>';
     h+='<div class="grid2"><button class="btn sm" onclick="window.__BHT_APP.quizStart(\''+(Q.lastMode||"all")+'\','+Q.themeN+')">Recommencer</button><button class="btn sm" onclick="window.__BHT_APP.quizEnd()">Retour aux quiz</button></div>';
     return h;
@@ -918,6 +1054,12 @@ function viewQuiz(){
     h+='<button class="tqbtn" onclick="window.__BHT_APP.quizStart(\'theme\','+t.n+')"><b>'+t.n+'</b> '+esc(t.titre)+'<span class="qsc">'+z.ok+'/'+z.tot+'</span></button>';
   });
   h+='</div></div>';
+  h+='<div class="grid2"><div class="card"><h3>🌍 Horizon</h3><div class="tgrid">';
+  D.HORIZON.forEach(function(x){
+    var z=hqTot(x.n);
+    h+='<button class="tqbtn" onclick="window.__BHT_APP.quizStart(\'hor\','+x.n+')"><span>'+x.ic+'</span><b>'+esc(x.titre)+'</b><span class="qsc">'+z.ok+'/'+z.tot+'</span></button>';
+  });
+  h+='</div><button class="btn sm" onclick="window.__BHT_APP.quizStart(\'allh\',0)">🧨 Marathon Horizon ('+HQ.length+' q.)</button></div></div>';
   h+='<div class="grid3">'+
    '<button class="btn sm" onclick="window.__BHT_APP.quizStart(\'all\',0)">🧨 Marathon — '+ALLQ.length+' questions</button>'+
    '<button class="btn sm" onclick="window.__BHT_APP.quizStart(\'fail\',0)">❌ Mes erreurs</button></div>';
@@ -976,6 +1118,34 @@ function viewChrono(){
   h+='<div class="card"><h3>🎲 Tirage de sujet</h3><p>Tirage au sort parmi les thèmes pas encore prêts + sujets surprises.</p><button class="btn" onclick="window.__BHT_APP.draw()">Tirer un sujet</button><div id="drawbox"></div></div>';
   return h;
 }
+function viewHorizon(){
+  var h=head("🌍 Horizon — hors thèmes","Culture générale pour le jury : sécurité civile, Marine, prévention, BMPM, défense. Contenu sourcé de tes documents Drive.");
+  h+='<div class="card"><h3>Quiz Horizon</h3><div class="tgrid">';
+  D.HORIZON.forEach(function(x){
+    var z=hqTot(x.n);
+    h+='<button class="tqbtn" onclick="window.__BHT_APP.quizStart(\'hor\','+x.n+')"><span>'+x.ic+'</span><b>'+esc(x.titre)+'</b><span class="qsc">'+z.ok+'/'+z.tot+'</span></button>';
+  });
+  h+='</div><button class="btn sm" onclick="window.__BHT_APP.quizStart(\'allh\',0)">🧨 Marathon Horizon — '+HQ.length+' questions</button></div>';
+  var nbRevus=D.HORIZON.filter(function(x){return S.hor["r"+x.n];}).length;
+  D.HORIZON.forEach(function(x){
+    var open=S.ui.horOpen===x.n;
+    h+='<div class="acc"><button class="acc-h" onclick="window.__BHT_APP.openHor('+x.n+')"><span class="tnum">'+x.ic+'</span><span class="ttit">'+esc(x.titre)+'</span><span class="badge" style="background:#263258">'+(open?"▾":"▸")+'</span></button>';
+    if(open){
+      h+='<div class="acc-b">';
+      h+='<div class="tips"><b>Source :</b> '+esc(x.src)+'</div>';
+      x.sections.forEach(function(sec){
+        h+='<div class="part"><h4>'+esc(sec.t)+'</h4><ul>'+sec.pts.map(function(p){return "<li>"+esc(p)+"</li>";}).join("")+'</ul></div>';
+      });
+      h+='<div class="grid2"><button class="btn sm" onclick="window.__BHT_APP.quizStart(\'hor\','+x.n+')">Quiz '+esc(x.titre)+' ('+x.quiz.length+' q.)</button>'+
+       '<button class="btn sm" onclick="window.__BHT_APP.horDone('+x.n+')">'+(S.hor["r"+x.n]?"↺ Dé-marquer relu":"✔ Marquer relu")+'</button></div>';
+      h+='</div>';
+    }
+    h+='</div>';
+  });
+  h+='<p class="foot">'+(nbRevus?'<span class="chip-ok">✔ '+nbRevus+' relu'+(nbRevus>1?"s":"")+'</span> ':'')+'Astuce jury : quand tu traites un des 21 thèmes, conclus par un lien vers un domaine Horizon (ex. FDF → prévention/RCCI, feu urbain → sécurité civile/PCS) — ça montre la vue d\'ensemble du chef de groupe.</p>';
+  return h;
+}
+
 function viewCDG(){
   var c=D.CDG;
   var h=head("⭐ Chef de groupe","Le rôle, les chiffres clés, la méthode — ta feuille de route BHT.");
@@ -998,6 +1168,8 @@ function drawBox(){
 var API={
   D:D,state:S,keys:K,ALLQ:function(){return ALLQ;},
   tab:function(t){renderApp(t);},
+  openHor:function(n){S.ui.tab="horizon";S.ui.horOpen=(S.ui.horOpen===n?0:n);save();renderApp();},
+  horDone:function(n){if(S.hor["r"+n])delete S.hor["r"+n];else S.hor["r"+n]=true;save();renderApp();},
   openTheme:function(n){S.ui.tab="oral";S.ui.theme=(S.ui.theme===n?0:n);save();renderApp();var el=document.getElementById("acc-"+n);if(el&&el.scrollIntoView)el.scrollIntoView({behavior:"smooth"});},
   cycle:cycle,resetTheme:resetTheme,
   draw:function(){drawBox();},

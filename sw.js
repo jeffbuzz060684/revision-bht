@@ -1,4 +1,4 @@
-var CACHE = "revision-bht-v1";
+var CACHE = "revision-bht-v2";
 var SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", function (e) {

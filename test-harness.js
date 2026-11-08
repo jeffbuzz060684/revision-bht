@@ -1,8 +1,9 @@
-// test-harness.js — Révision BHT v1 — harnais de tests
+// test-harness.js — Révision BHT v2 — harnais de tests
 // Usage : node test-harness.js (à la racine du dépôt)
-// Vérifie : structure index.html, cœur de données (21 thèmes, ~73 quiz), rendu des 6 onglets,
-// moteur quiz (réponse immédiate + promotion d'état), progression, notes, DTP, chronos jalonnés,
-// persistance localStorage, PWA (sw/manifest/version/workflow/icônes), pas de mojibake.
+// Vérifie : structure index.html, cœur de données (21 thèmes + 73 quiz + 5 domaines Horizon × 4 quiz),
+// rendu des 7 onglets, moteur quiz (réponse immédiate + promotion d'état, modes thème/horizon/marathon),
+// progression, notes, DTP, chronos jalonnés, persistance localStorage, PWA (sw/manifest/version/workflow/icônes),
+// pas de mojibake.
 // Compatibilité : node >= 18 ; aussi exécutable en sandbox avec fs stubbé.
 
 var fs = null;
@@ -105,7 +106,7 @@ function ok(name, cond) {
   // ============================================================
   // 3. CŒUR DE DONNÉES
   // ============================================================
-  ok("cœur: META version v1", D.META.version === "v1");
+  ok("cœur: META version v2", D.META.version === "v2");
   ok("cœur: 21 thèmes", D.THEMES.length === 21);
   var nums = D.THEMES.map(function (t) { return t.n; });
   for (var i = 1; i <= 21; i++) ok("cœur: thème " + i + " présent", nums.indexOf(i) !== -1);
@@ -136,25 +137,53 @@ function ok(name, cond) {
   ok("cœur: DTP glossaire >= 18", D.DTP.glossaire.length >= 18);
   ok("cœur: DTP exemple Parc Bellevue", D.DTP.exemple.t.indexOf("Parc Bellevue") !== -1);
   ok("cœur: CDG rôle + chiffres", D.CDG.role.length >= 5 && D.CDG.chiffres.length >= 6);
+
+  // ============================================================
+  // 3bis. HORIZON (hors thèmes — v2)
+  // ============================================================
+  ok("horizon: 5 domaines", D.HORIZON.length === 5);
+  var horQ = 0;
+  D.HORIZON.forEach(function (h) {
+    ok("horizon: domaine " + h.n + " a tous ses champs",
+      !!h.ic && !!h.titre && !!h.src && h.sections.length >= 3 && h.quiz.length === 4);
+    h.sections.forEach(function (sec) {
+      ok("horizon: domaine " + h.n + " section '" + (sec.t || "").slice(0, 24) + "' avec points", !!sec.t && sec.pts.length >= 2);
+    });
+    h.quiz.forEach(function (q, qi) {
+      horQ++;
+      ok("horizon: quiz H" + h.n + "Q" + qi + " 4 options", Array.isArray(q.opts) && q.opts.length === 4);
+      ok("horizon: quiz H" + h.n + "Q" + qi + " réponse valide + explication", q.a >= 0 && q.a < 4 && !!q.ex);
+    });
+  });
+  ok("horizon: 20 questions au total", horQ === 20);
+  ok("horizon: domaines distincts (1-5)", D.HORIZON.map(function (h) { return h.n; }).join(",") === "1,2,3,4,5");
+  ok("horizon: titres couvrent les 5 familles",
+    JSON.stringify(D.HORIZON).indexOf("sécurité civile") !== -1 &&
+    JSON.stringify(D.HORIZON).indexOf("marine") !== -1 &&
+    JSON.stringify(D.HORIZON).indexOf("révention") !== -1 &&
+    JSON.stringify(D.HORIZON).indexOf("BMPM") !== -1);
+  ok("horizon: sources Drive citées (Drive)", JSON.stringify(D.HORIZON).indexOf("Drive") !== -1);
+
   var allCore = JSON.stringify(D);
   ok("cœur: pas de mojibake", allCore.indexOf("Ã") === -1 && allCore.indexOf("Â") === -1);
 
   // ============================================================
-  // 4. RENDU DES 6 ONGLETS
+  // 4. RENDU DES 7 ONGLETS
   // ============================================================
   var tabsRendered = 0;
-  ["home", "oral", "quiz", "dtp", "chrono", "cdg"].forEach(function (t) {
+  ["home", "oral", "quiz", "dtp", "chrono", "cdg", "horizon"].forEach(function (t) {
     var err = null;
     try { A.tab(t); } catch (e) { err = e; }
     ok("rendu: onglet " + t + " sans erreur", err === null && APP_EL.innerHTML.length > 400);
     if (!err) tabsRendered++;
   });
-  ok("rendu: 6/6 onglets", tabsRendered === 6);
+  ok("rendu: 7/7 onglets", tabsRendered === 7);
 
   A.tab("home");
   ok("rendu: accueil donut + avancement", APP_EL.innerHTML.indexOf("donut") !== -1 && APP_EL.innerHTML.indexOf("avancement") !== -1);
   ok("rendu: accueil sujet au hasard", APP_EL.innerHTML.indexOf("Sujet au hasard") !== -1);
-  ok("rendu: tabbar 6 boutons", (TB_EL.innerHTML.match(/class="tb[ "]/g) || []).length === 6);
+  ok("rendu: accueil accès Hors-thèmes", APP_EL.innerHTML.indexOf("Hors-thèmes") !== -1);
+  ok("rendu: tabbar 7 boutons", (TB_EL.innerHTML.match(/class="tb[ "]/g) || []).length === 7);
 
   A.tab("oral");
   ok("rendu: oral 21 thèmes listés", (APP_EL.innerHTML.match(/class="acc-h"/g) || []).length === 21);
@@ -183,6 +212,21 @@ function ok(name, cond) {
   A.tab("cdg");
   ok("rendu: CDG rôle + chiffres", APP_EL.innerHTML.indexOf("chef de groupe") !== -1 && APP_EL.innerHTML.indexOf("2 035") !== -1);
   ok("rendu: CDG calage oral", APP_EL.innerHTML.indexOf("0:00") !== -1 && APP_EL.innerHTML.indexOf("8:30") !== -1);
+
+  A.tab("horizon");
+  ok("rendu: horizon 5 domaines listés", (APP_EL.innerHTML.match(/class="acc-h"/g) || []).length === 5);
+  ok("rendu: horizon marathon proposé", APP_EL.innerHTML.indexOf("Marathon Horizon") !== -1 && APP_EL.innerHTML.indexOf("20 questions") !== -1);
+  A.openHor(1);
+  ok("rendu: horizon domaine 1 ouvert (sections)", APP_EL.innerHTML.indexOf("btn sm") !== -1 && APP_EL.innerHTML.indexOf("Quiz ") !== -1);
+  ok("rendu: horizon sources Drive visibles", APP_EL.innerHTML.indexOf("Source") !== -1 && APP_EL.innerHTML.indexOf("Drive") !== -1);
+  A.openHor(1);
+  ok("rendu: horizon domaine 1 refermé", APP_EL.innerHTML.indexOf("Marquer relu") === -1);
+  A.openHor(2);
+  A.horDone(2);
+  ok("rendu: horizon relu persisté (localStorage)", JSON.parse(lsStore[A.keys.hor])["r2"] === true);
+  ok("rendu: horizon chip relu affichée", APP_EL.innerHTML.indexOf("relu") !== -1);
+  A.horDone(2);
+  ok("rendu: horizon relu dé-marqué", !JSON.parse(lsStore[A.keys.hor])["r2"]);
 
   // ============================================================
   // 5. MOTEUR QUIZ (réponse immédiate)
@@ -221,6 +265,43 @@ function ok(name, cond) {
   ok("quiz: marathon 73 questions", A.qState().len === 73);
   A.quizEnd();
   ok("quiz: retour au menu quiz", APP_EL.innerHTML.indexOf("Par thème") !== -1);
+
+  // --- Quiz Horizon (v2) ---
+  A.quizStart("hor", 1);
+  var qh = A.qState();
+  ok("quiz: horizon domaine 1 lancé (4 questions)", qh.len === 4 && qh.idx === 0 && qh.mode === "hor");
+  ok("quiz: horizon question en cours exposée", qh.cur && qh.cur.q && qh.cur.q.opts.length === 4 && qh.cur.hid === 1);
+  var goodH = qh.cur.q.a;
+  A.pick(goodH);
+  qh = A.qState();
+  ok("quiz: horizon réponse immédiate (score 1)", qh.answered === true && qh.score === 1);
+  ok("quiz: horizon explication affichée", APP_EL.innerHTML.indexOf("Bonne réponse") !== -1);
+  A.next();
+  var badH = (A.qState().cur.q.a + 1) % 4;
+  A.pick(badH);
+  A.next();
+  A.pick(A.qState().cur.q.a);
+  A.next();
+  A.pick(A.qState().cur.q.a);
+  A.next();
+  ok("quiz: horizon domaine 1 terminé 3/4", APP_EL.innerHTML.indexOf("3 / 4") !== -1);
+  ok("quiz: horizon score persisté sous clé h1", JSON.parse(lsStore[A.keys.quiz])["h1"] && JSON.parse(lsStore[A.keys.quiz])["h1"][0] === true && JSON.parse(lsStore[A.keys.quiz])["h1"][1] === false);
+  ok("quiz: horizon sans impact sur S.prog", S.prog[1] === "fiche" || S.prog[1] === "quiz");
+  A.quizStart("allh", 0);
+  ok("quiz: marathon horizon 20 questions", A.qState().len === 20 && A.qState().mode === "allh");
+  A.quizStart("fail", 0);
+  var failLen = A.qState().len;
+  var sawHorizonFail = false, steps = 0;
+  while (A.qState().idx < A.qState().len && steps < 30) {
+    var c = A.qState().cur;
+    if (c && c.hid) sawHorizonFail = true;
+    A.pick((c.q.a + 1) % 4); // reste ratée : ne modifie pas la progression
+    A.next();
+    steps++;
+  }
+  ok("quiz: mode erreurs inclut les ratés horizon", failLen >= 2 && sawHorizonFail);
+  A.quizEnd();
+  ok("quiz: menu quiz affiche les 5 domaines horizon + marathon", APP_EL.innerHTML.indexOf("Horizon") !== -1 && APP_EL.innerHTML.indexOf("Marathon Horizon") !== -1 && APP_EL.innerHTML.indexOf("(20 q.)") !== -1);
 
   // ============================================================
   // 6. PROGRESSION + NOTES + TIRAGE
@@ -289,11 +370,11 @@ function ok(name, cond) {
   // 8. PWA + FICHIERS DU DÉPÔT
   // ============================================================
   var sw = slurp("sw.js");
-  ok("pwa: sw cache revision-bht-v1", sw.indexOf("revision-bht-v1") !== -1);
+  ok("pwa: sw cache revision-bht-v2", sw.indexOf("revision-bht-v2") !== -1);
   ok("pwa: version.json jamais caché", sw.indexOf("version.json") !== -1 && sw.indexOf("TOUJOURS réseau") !== -1);
   ok("pwa: navigate-first + secours hors ligne", sw.indexOf('e.request.mode === "navigate"') !== -1);
   var ver = JSON.parse(slurp("version.json"));
-  ok("pwa: version.json v1 du jour", ver.version === "v1" && ver.app === "revision-bht");
+  ok("pwa: version.json v2 du jour", ver.version === "v2" && ver.app === "revision-bht");
   var man = JSON.parse(slurp("manifest.webmanifest"));
   ok("pwa: manifest FR standalone", man.lang === "fr" && man.display === "standalone");
   ok("pwa: manifest 3 icônes", man.icons.length === 3);
@@ -309,7 +390,7 @@ function ok(name, cond) {
   // BILAN
   // ============================================================
   console.log("--------------------------------------------------");
-  console.log("RÉVISION BHT v1 — BILAN TESTS : " + PASS + " OK / " + FAIL + " ÉCHEC(S), " + (PASS + FAIL) + " au total");
+  console.log("RÉVISION BHT v2 — BILAN TESTS : " + PASS + " OK / " + FAIL + " ÉCHEC(S), " + (PASS + FAIL) + " au total");
   if (FAILURES.length) {
     console.log("ÉCHECS :");
     FAILURES.forEach(function (f) { console.log("  ✘ " + f); });
