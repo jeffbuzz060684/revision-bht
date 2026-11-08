@@ -1,0 +1,17 @@
+{
+  "name": "Révision BHT — Chef de groupe",
+  "short_name": "Révision BHT",
+  "description": "Révision complète BHT : oral 10 minutes sur les 21 thèmes, quiz corrigés immédiatement, épreuve écrite DTP, chronos jalonnés et fiche chef de groupe",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d1020",
+  "theme_color": "#0d1020",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

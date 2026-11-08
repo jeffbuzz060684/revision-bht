@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d1020">
+<meta name="description" content="Révision BHT — 21 thèmes oraux, quiz, DTP écrit, chronos, fiche chef de groupe">
+<title>Révision BHT — Chef de groupe</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg:#0d1020; --bg2:#12182e; --card:#171f38; --card2:#1d2745; --line:#2a3560;
+  --txt:#eef1fb; --mut:#9aa6c8; --acc:#ff7a18; --acc2:#ffb46b; --ok:#2fd08c; --warn:#ffd23f; --bad:#ff5a5a;
+  --r:1.1rem;
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+html{font-size:17px}
+body{margin:0; background:linear-gradient(160deg,#0d1020 0%,#101636 55%,#0d1020 100%); color:var(--txt);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.55; min-height:100vh}
+.page{max-width:780px; margin:0 auto; padding:.8rem .8rem 7.8rem}
+h1{font-size:1.32rem; margin:.2rem 0 .35rem}
+h2{font-size:1.08rem; margin:1rem 0 .5rem}
+h3{font-size:.98rem; margin:.55rem 0 .45rem}
+h4{font-size:.9rem; margin:.55rem 0 .3rem; color:var(--acc2)}
+p{margin:.4rem 0}
+a{color:var(--acc2)}
+.mut{color:var(--mut)}
+hr{border:0; border-top:1px dashed var(--line); margin:.6rem 0}
+.head{padding:.4rem .2rem .2rem}
+.head .sub{color:var(--mut); font-size:.86rem; margin:.15rem 0 .5rem}
+/* cards */
+.card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:.85rem .95rem; margin:.55rem 0}
+.card.center{text-align:center}
+.card.warn{border-left:4px solid var(--warn)}
+.grid2{display:grid; grid-template-columns:repeat(2,1fr); gap:.6rem}
+.grid2>.card{margin:0}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:.55rem}
+.grid3>.card{margin:0}
+/* stats */
+.statrow{display:flex; justify-content:space-between; gap:.7rem; padding:.3rem 0; border-bottom:1px dashed var(--line); font-size:.9rem}
+.statrow:last-child{border-bottom:0}
+.statrow b{text-align:right}
+.kpi{background:var(--card); border:1px solid var(--line); border-radius:.9rem; padding:.6rem .5rem; text-align:center; display:flex; flex-direction:column; gap:.2rem}
+.kpi b{font-size:1.06rem; color:var(--acc2)}
+.kpi span{font-size:.72rem; color:var(--mut); line-height:1.3}
+/* donut */
+.donut{width:100%; max-width:210px; margin:0 auto}
+.d-b{fill:none; stroke:#232c52; stroke-width:13}
+.d-f{fill:none; stroke:var(--acc); stroke-width:13; stroke-linecap:round; transform:rotate(-90deg); transform-origin:65px 65px; transition:stroke-dashoffset .5s}
+.d-t{fill:var(--txt); font-size:1.55rem; font-weight:800; text-anchor:middle}
+.d-s{fill:var(--mut); font-size:.55rem; text-anchor:middle}
+/* buttons */
+.btn{display:inline-block; border:1px solid var(--line); background:var(--card2); color:var(--txt);
+  border-radius:.9rem; padding:.55rem .9rem; font-size:.92rem; cursor:pointer; margin:.25rem .25rem .25rem 0; min-height:44px}
+.btn:active{transform:scale(.97)}
+.btn.sm{padding:.42rem .6rem; min-height:38px; font-size:.85rem}
+/* accordion */
+.acc{background:var(--card); border:1px solid var(--line); border-radius:var(--r); margin:.5rem 0; overflow:hidden}
+.acc-h{display:flex; align-items:center; gap:.6rem; width:100%; text-align:left; border:0; background:none; color:var(--txt);
+  padding:.72rem .85rem; cursor:pointer; font-size:.95rem; font-family:inherit; min-height:48px}
+.acc-h:active{background:#1b2340}
+.acc-h .tnum{flex:0 0 1.7rem; height:1.7rem; display:flex; align-items:center; justify-content:center;
+  background:#263258; border-radius:.55rem; font-weight:800; font-size:.82rem; color:var(--acc2)}
+.acc-h .ttit{flex:1; font-weight:600}
+.acc-h .badge{flex:0 0 auto; border-radius:.65rem; padding:.12rem .5rem; font-size:.8rem; font-weight:700}
+.acc-h .chev{color:var(--mut)}
+.acc-b{border-top:1px dashed var(--line); padding:.6rem .95rem .85rem}
+.acc-b ul{margin:.25rem 0 .4rem; padding-left:1.1rem}
+.acc-b li{margin:.3rem 0; font-size:.9rem}
+.part{background:#141b33; border:1px solid var(--line); border-radius:.85rem; padding:.55rem .7rem; margin:.45rem 0}
+.tips{background:#15203a; border-radius:.8rem; padding:.55rem .75rem; margin:.45rem 0; font-size:.9rem}
+.tips.ccl{border-left:3px solid var(--ok)}
+.tips.qj{border-left:3px solid var(--warn)}
+.warn{color:var(--warn); font-size:.78rem}
+.note{margin-top:.55rem}
+.foot{color:var(--mut); font-size:.78rem; margin:.6rem .2rem}
+/* quiz */
+.qcard{padding:.85rem .95rem}
+.qmeta{font-size:.78rem; color:var(--mut); margin-bottom:.4rem}
+.qq{font-weight:700; font-size:1rem; margin:.3rem 0 .6rem}
+.opts .opt{display:block; width:100%; text-align:left; border:1px solid var(--line); background:#151c36; color:var(--txt);
+  border-radius:.8rem; padding:.55rem .75rem; margin:.35rem 0; cursor:pointer; font-size:.92rem; min-height:46px; font-family:inherit}
+.opt:active{transform:scale(.98)}
+.opt.ok{background:#153a2e; border-color:var(--ok)}
+.opt.ko{background:#3a2430; border-color:var(--bad)}
+.expl{background:#15203a; border-radius:.7rem; padding:.6rem .75rem; margin:.5rem 0 .3rem; font-size:.87rem}
+.expl.good{border-left:3px solid var(--ok)}
+.expl.bad{border-left:3px solid var(--bad)}
+.bigscore{font-size:2.3rem; font-weight:800; margin:.3rem 0}
+.tgrid{display:grid; grid-template-columns:1fr; gap:.4rem}
+.tqbtn{display:flex; align-items:center; gap:.5rem; width:100%; text-align:left; border:1px solid var(--line); background:#151c36;
+  color:var(--txt); border-radius:.8rem; padding:.55rem .7rem; cursor:pointer; font-size:.88rem; font-family:inherit; min-height:44px}
+.tqbtn b{flex:0 0 1.5rem}
+.tqbtn .qsc{margin-left:auto; flex:0 0 auto; background:#263258; border-radius:.55rem; padding:.05rem .45rem; font-size:.76rem; color:var(--acc2)}
+/* chrono */
+.chrono .bigtime{font-size:3rem; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:.04em}
+.chrono .plabel{color:var(--acc2); font-weight:600; margin:.15rem 0 .5rem}
+.pbar{width:100%; height:.5rem; background:#232c52; border-radius:.3rem; overflow:hidden; margin:.5rem 0}
+.pbar div{height:100%; background:linear-gradient(90deg,#ff7a18,#ffb46b); transition:width .4s}
+.chrono .phase{font-size:.9rem; color:var(--acc2); margin:.4rem 0 .6rem; min-height:1.3rem}
+.chrono .statrow{font-size:.82rem}
+/* lists */
+.reflex{margin:.3rem 0; padding-left:1.3rem}
+.reflex li{margin:.38rem 0; font-size:.9rem}
+.role li{margin:.4rem 0; font-size:.92rem}
+.tbl{font-size:.86rem}
+/* draw */
+.drawcard{background:#1b1440; border:1px solid #4a3a8c; border-radius:var(--r); padding:.8rem .9rem; margin-top:.6rem}
+.drawcard .dtag{font-size:.74rem; color:var(--acc2); font-weight:700; letter-spacing:.05em}
+.drawcard .dtxt{font-size:1.1rem; font-weight:800; margin:.3rem 0 .5rem}
+/* tabbar */
+.tabbar{position:fixed; bottom:0; left:0; right:0; display:flex; justify-content:center;
+  background:rgba(13,16,32,.94); backdrop-filter:blur(14px); border-top:1px solid var(--line);
+  padding:.3rem .2rem calc(.3rem + env(safe-area-inset-bottom)); z-index:50}
+.tb{display:flex; flex-direction:column; align-items:center; justify-content:center; flex:1 1 0; min-width:0;
+  border:0; background:none; color:var(--mut); cursor:pointer; padding:.3rem .1rem; font-family:inherit}
+.tb .tb-i{font-size:1.35rem; line-height:1.25}
+.tb .tb-l{font-size:.62rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%}
+.tb.on{color:var(--acc)}
+textarea{width:100%; background:#151c36; color:var(--txt); border:1px solid var(--line); border-radius:.8rem; padding:.6rem; font-size:.9rem; font-family:inherit; min-height:5.5rem}
+:focus-visible{outline:2px solid var(--acc); outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="page" id="app"></div>
+<nav class="tabbar" id="tabbar"></nav>
+<script>
+var D = {
+META:{version:"v1",date:"08/11/2026",titre:"Révision BHT",sub:"Brevet de Haute Technicité — Chef de groupe BMPM",src:"Contenu vérifié depuis les documents Drive BHT 2026-27"},
+
+CALAGE:[
+ {t:"0:00–1:30",p:"Introduction",d:"Accroche factuelle (chiffre/événement) → définition en 1 phrase → problématique → annonce du plan"},
+ {t:"1:30–4:00",p:"Partie I",d:"Le constat / le cadre — chiffres clés"},
+ {t:"4:00–6:30",p:"Partie II",d:"L'analyse / l'organisation — doctrine, acteurs"},
+ {t:"6:30–8:30",p:"Partie III",d:"L'action / le rôle du chef de groupe — exemples concrets"},
+ {t:"8:30–10:00",p:"Conclusion",d:"Réponse à la problématique → synthèse 3 points → ouverture"}
+],
+REGLESOR:["Phrases courtes, prêtes à dire à voix haute","Tout chiffre sourcé (Drive + web), jamais de mémoire","Transitions explicites : « Après avoir vu… nous verrons maintenant… »","Toujours finir par le rôle du chef de groupe","Toujours une ouverture d'actualité en conclusion","1 question jury anticipée par sujet"],
+
+THEMES:[
+{n:1,titre:"Le risque FDF",etat:"fiche",full:true,
+ accroche:"1997 : 3 450 hectares partent en fumée dans le massif de l'Étoile, aux portes de Marseille. 2022 : la France brûle sur 72 000 hectares. Entre ces deux dates, une certitude : le feu de forêt n'est pas un risque d'été, c'est un risque de civilisation pour un territoire comme le nôtre.",
+ pb:"Comment le BMPM anticipe-t-il et maîtrise-t-il un risque qui encercle la deuxième ville de France ?",
+ parties:[
+ {t:"I. Un territoire unique en Europe",pts:[
+  "Feu de forêt = boisement/maquis/garrigue d'au moins 0,5 ha ; au sens opérationnel : inclut formations sub-forestières ; aléa × enjeux = risque",
+  "Triangle du feu : combustible, oxygène, chaleur ; propagation = météo + topographie + végétation",
+  "Marseille = une des rares grandes villes d'Europe encerclée de massifs : Étoile/Garlaban au nord-est, Calanques au sud, Estaque/Côte Bleue à l'ouest ; ~9 000 ha de massifs ; interface habitat-forêt = bande de 200 m la plus vulnérable",
+  "Facteurs aggravants : garrigue + pins d'Alep + relief calcaire + mistral = feux rapides pouvant atteindre l'urbanisation",
+  "France : 3 000–4 500 feux/an, 10 000–17 000 ha ; 9 départs sur 10 d'origine humaine ; dans le 13 : ~60 % imprudence, malveillance derrière les plus grands feux",
+  "Historique à citer : 1990 Calanques 2 909 ha · 1997 Étoile 3 450 ha · 2009 Carpiagne 1 060 ha · 2013 Marseilleveyre 54 ha EN FÉVRIER · 2016 Vitrolles ~400 ha · 2022 : 62 000 ha (Landiras ~20 000) ; pourtour méditerranéen : 942 000 ha en 49 ans"]},
+ {t:"II. Doctrine et gouvernance",pts:[
+  "Guide national : 2 principes (approche globale avant/pendant/après, anticipation) + 4 objectifs : empêcher les feux · maîtriser les éclosions au stade initial · limiter les développements catastrophiques · réhabiliter les espaces",
+  "Prévision : niveau de risque et pression incendiaire diffusés par le COZ ; armement décidé par l'amiral ; cellule Météo-France dédiée quotidienne zone par zone",
+  "BDD Prométhée (feux > 1 ha) pour le RETEX et la statistique",
+  "Partenaires DFCI : SDIS 13, ONF, conseil départemental, communes, CCFF/vigies, parc national des Calanques ; accès aux massifs réglementé l'été (0811 20 13 13)",
+  "Synergie : tout feu > 10 ha, feu naissant nécessitant moyens nationaux, ou feu avec conséquences sur la vie civile → couverture commune ; renforts : CODIS 13 jusqu'à 3 GIFF, puis COZ"]},
+ {t:"III. La posture BMPM — mon rôle de chef de groupe",pts:[
+  "Bascule en posture FDF décidée par le commandant du BMPM (hydrométrie, sécheresse, vents) ; saison ~90 jours",
+  "Socle : 350 MP armant les casernes 24/7/365 ; en saison jusqu'à 170 MP dédiés FDF ; jusqu'à 43–45 CCF pré-positionnés les jours à risque",
+  "Moyens : GIFF ~14 MP (VLTT + 3 CCF 4 000 L) · DIH : 2 000 m d'établissement, dévidoir aérien 600 m Ø45, stick de 12 MP · MIL, GPP · 2 HBE loués (kit ~1 200 L) — premier largage AVANT l'arrivée du premier GIFF",
+  "Exemple : feu de la Traverse de la Buzine — 3 GIFF + 4 Canadairs (36 largages) + HBE du bataillon (24 largages)",
+  "Chef de groupe : je tiens le pré-positionnement, je briefe sur la météo du jour, je gère la rusticité des jeunes, je remonte le RETEX"]}],
+ ccl:"Le BMPM ne subit pas le risque, il l'anticipe : doctrine nationale déclinée en posture armée quotidiennement. Ouverture : le changement climatique étend le risque hors Méditerranée (2022) ; le DIH reste un savoir-faire unique — le chef de groupe en est le garant.",
+ qj:{q:"Pourquoi le risque n'est-il pas qu'estival ?",r:"Marseilleveyre, février 2013 : épisodes secs hivernaux + sensibilité accrue de la végétation (GIEC). La posture se décide sur critères, pas sur le calendrier."},
+ quiz:[
+ {q:"Surface minimale pour parler de feu de forêt ?",opts:["0,5 ha","1 ha","5 ha","10 ha"],a:0,ex:"Définition de référence ; au sens opérationnel, les formations sub-forestières (garrigues, maquis) sont incluses."},
+ {q:"Quelle proportion des départs de feu est d'origine humaine ?",opts:["5 sur 10","7 sur 10","9 sur 10","1 sur 2"],a:2,ex:"9/10 — la prévention (sensibilisation, surveillance dissuasive) est le premier des 4 objectifs de la doctrine."},
+ {q:"Capacité d'établissement du DIH ?",opts:["600 m","1 000 m","2 000 m","3 000 m"],a:2,ex:"Dévidoir aérien 600 m Ø45 ; 1 stick = 12 hommes ; appui possible des HBE (premier largage avant l'arrivée du 1er GIFF)."},
+ {q:"Qui diffuse le niveau de risque et la pression incendiaire ?",opts:["Le CODIS 13","Le COZ","Météo-France","L'ONF"],a:1,ex:"Le COZ diffuse ; l'armement est décidé par l'amiral (commandant du BMPM)."}]},
+
+{n:2,titre:"Le soutien au BMPM",etat:"fiche",full:true,
+ accroche:"122 000 interventions par an. Aucune d'elles ne serait possible sans les 2 554 agents qui arment, réparent, soignent et administrent. Le soutien, c'est l'arrière qui fait avancer l'avant.",
+ pb:"Comment les fonctions de soutien font-elles tenir la plus grosse unité de la Marine nationale ?",
+ parties:[
+ {t:"I. Le cadre : une organisation en 3 pôles",pts:[
+  "Soutien = toutes les fonctions non opérationnelles qui rendent l'opérationnel possible : administration/RH/finances, logistique, maintenance (MCO), infrastructures, santé, psychologie",
+  "Arrêté du 26 octobre 2012 : état-major, unités d'intervention, unités de service et de soutien, unités d'instruction, service de santé et de secours médical",
+  "3 pôles : commandement (l'amiral = directeur du SSI de Marseille + commandant de la Marine à Marseille) / direction (EM à 6 divisions dont admin-RH-finances) / exécution (GO Nord, GO Sud, secteurs autonomes Port-de-Bouc et Marignane, groupement de soutien + groupement santé, écoles, service local de psychologie appliquée)",
+  "Chiffres : 2 035 marins-pompiers, 2 554 agents ; 17 CIS ; 26 sites"]},
+ {t:"II. Financement et enjeux actuels",pts:[
+  "La commune et les organismes conventionnés financent la totalité (fonctionnement + investissement) ; la Marine ne contribue qu'au prorata des élèves EMPM (arrêté 2012, art. 9)",
+  "Rémunération militaire non corrélée à l'activité (prime de feu = indemnité)",
+  "Cour des comptes (12/02/2025) : faire évoluer gouvernance/répartition du budget + fidéliser les effectifs ; référé du 28/04/2025 : captation des effectifs vers le civil",
+  "Ville de Marseille : +4,5 M€ au BP 2025, charges courantes +7 % dont renouvellement du matériel ; revue bâtimentaire 2023 sur les 26 sites"]},
+ {t:"III. Le soutien en action — mon rôle de chef de groupe",pts:[
+  "CTB (ex-CTP, 2017) : 6 000 m² couverts, 110 personnels, 10 de garde chaque jour — le cœur de la maintenance",
+  "EOS STL : 3 binômes en départ immédiat 24/7, 11 engins spécifiques (Plombières), montée en puissance +6 pers. en astreinte 1 h ; missions : air respirable, tenues, manœuvre de force (métro/tramway), dépannage, levage, ravitaillement carburant",
+  "Groupement santé : centre médical Frédéric Paré ; PUI ; 3 SMUR conventionnés AP-HM (~6 500 interv. 2021) ; UMIMM 9 pers. (CAPINAV) ; renforts OPEX : Vésubie 2020, Liban 2020, Grèce 2021, Pakistan 2022",
+  "Service local de psychologie appliquée : lien direct avec les thèmes 13 et 15",
+  "Chef de groupe : premier échelon de soutien — habilitations, FMPA, demande de maintenance, détection de la fatigue"]}],
+ ccl:"Le soutien n'est pas l'arrière-plan du BMPM, c'est sa condition de robustesse. Ouverture : à l'heure des 122 000 interventions/an, la disponibilité dépend de la fidélisation et du renouvellement du matériel.",
+ qj:{q:"Quel lien entre soutien et disponibilité opérationnelle ?",r:"Aucun départ de garde sans MCO ni logistique ; le chef de groupe mesure la disponibilité réelle de son groupe chaque matin."},
+ quiz:[
+ {q:"Combien de marins-pompiers au BMPM ?",opts:["1 835","2 035","2 554","2 400"],a:1,ex:"2 035 marins-pompiers, 2 554 agents au total — plus grosse unité de la Marine nationale."},
+ {q:"Qui finance la totalité des dépenses de fonctionnement et d'investissement ?",opts:["La Marine nationale","La commune et les organismes conventionnés","L'État","Le département"],a:1,ex:"Arrêté 2012 art. 9 ; la Marine ne contribue qu'au prorata des élèves de l'EMPM."},
+ {q:"Combien d'interventions par an ?",opts:["~22 000","~62 000","~122 000","~220 000"],a:2,ex:"~122 000 interventions/an, ~1 000 appels/jour, 17 CIS."},
+ {q:"Combien de binômes de l'EOS STL en départ immédiat 24/7 ?",opts:["1","2","3","6"],a:2,ex:"3 binômes immédiats + 6 personnes en astreinte 1 h ; 11 engins spécifiques à Plombières."}]},
+
+{n:3,titre:"Les cursus de formation du marin-pompier",etat:"fiche",full:true,
+ accroche:"1939 : l'incendie des Nouvelles Galeries à Marseille fait 73 morts. De cette tragédie naissent les enseignements qui deviendront l'école des marins-pompiers — aujourd'hui ~550 élèves par an.",
+ pb:"Comment le cursus fabrique-t-il un professionnel à la fois sapeur-pompier, marin et militaire — et interchangeable au plan national ?",
+ parties:[
+ {t:"I. Le cadre : une triple culture codifiée",pts:[
+  "Formation sécurité civile (référentiels DGSCGC, arrêtés 8 août 2013 SPV / 30 septembre 2013 SPP) dans un cadre Marine nationale (DPMM) — triple culture maritime, militaire, sapeur-pompier",
+  "Référentiels RAC (activités-compétences) remplacent les anciens GNR centrés savoir ; socle = IP CDT 7.1",
+  "Pilotage : DIV ENT/FORM ; l'amiral = ADC (autorité de domaine de compétences) de la spécialité MAPOM",
+  "EMPM : 2 sites (La Parette = élémentaire, La Rose = continue) ; enseignements dès 1939, école formalisée 1997 ; ~400 élèves/jour, ~50 formateurs"]},
+ {t:"II. Du recrutement au chef de groupe : le cursus complet",pts:[
+  "Sélection : dossier, entretien, épreuves sportives et de vertige ; ~200 recrutements/an",
+  "FIE militaire/maritime 6 semaines (St-Mandrier, Brest, Querqueville) puis FEM métier 13 semaines à La Parette → SAP, feux urbains, feux de navire, FDF → sortie QMF, contrat 4 ans",
+  "Carrière (directive 102 du 19/04/2019) : BAT 8 semaines (accès 2–8 ans, niv. 3) → BS ~11 semaines (~11 ans de service, niv. 4) → BHT ~20 semaines = chef de groupe (REM niv. II, NF 3a/3b) → CSUP/CDM ; officiers SECUR (format 2023-2024)",
+  "Moyennes de grade : QM2 2 ans 4 mois, QM1 5 ans, SM 7 ans, MT 13 ans, PM 20 ans, MP 27 ans",
+  "Gestion 2 pôles : AGE (PERS) + ADC (ENT/FORM) ; tutorat pré-BAT VAREQ (instruction DPMM 21/06/2012) : BAT tutoré plus court"]},
+ {t:"III. Les évolutions du système — mon rôle",pts:[
+  "CETIS (2004, site unique en Europe) : agréments FDN, 3 aires de feu multi-niveaux, rayonnement international",
+  "Caisson MEFER : compréhension système feu (CSF), FMPA en alternance caisson/simulateur",
+  "APC depuis 2008 (EMPM école pilote) ; réforme MARPO du 1er janvier 2022 (spécialité à part entière, SECIT à St-Mandrier) ; projet Kedge (regroupement des écoles)",
+  "Chef de groupe : premier formateur de mon groupe — FMPA, tutorat pré-BAT de mes équipiers, RETEX après chaque intervention"]}],
+ ccl:"Le cursus garantit l'interopérabilité (référentiels DGSCGC) tout en préservant la culture militaire — l'équation unique du BMPM. Ouverture : fidélisation par la formation continue.",
+ qj:{q:"La formation produit-elle des diplômés ou de l'aptitude opérationnelle ?",r:"3 dimensions (physique, psychologique, technique) + rusticité : opérer en conditions dégradées — le vrai produit du cursus."},
+ quiz:[
+ {q:"Durée de la FEM à l'EMPM La Parette ?",opts:["6 semaines","11 semaines","13 semaines","20 semaines"],a:2,ex:"Après la FIE (6 semaines) : FEM métier 13 semaines → diplôme QMF, contrat 4 ans."},
+ {q:"À quel emploi forme le BHT ?",opts:["Chef d'équipe","Chef d'agrès à une équipe","Chef de groupe","Chef de colonne"],a:2,ex:"REM niveau II, NF 3a/3b, ~20 semaines de cours."},
+ {q:"Quel texte organise la politique d'emploi et de formation ?",opts:["La directive 641","La directive 102 du 19/04/2019","L'arrêté du 26/10/2012","L'IP CDT 7.1"],a:1,ex:"La directive 102 abroge la 641 ; gestion à 2 pôles AGE + ADC."},
+ {q:"Quelle approche pédagogique depuis 2008 (EMPM école pilote) ?",opts:["GNR","RAC","APC","VAE"],a:2,ex:"Approche par compétences — les RAC ont remplacé les anciens GNR centrés savoir."}]},
+
+{n:4,titre:"Politique d'emploi du marin-pompier",etat:"fiche",full:true,
+ accroche:"« Les militaires peuvent être appelés à servir en tout temps et tout lieu », dit le code de la défense. En octobre 2020, le BMPM projette des marins-pompiers dans la Vésubie. Cette phrase n'est pas théorique.",
+ pb:"Comment concilier le besoin collectif d'armement et l'aspiration individuelle de carrière ?",
+ parties:[
+ {t:"I. Le cadre : la directive 102",pts:[
+  "Directive 102 du 19 avril 2019 (abroge la 641) : répartition coordonnée du personnel entre domaines opérationnel et organique",
+  "4 axes : garantir l'armement des forces OPS et non OPS · générer les compétences dans la durée · offrir des perspectives de carrière · garder une marge pour l'imprévu",
+  "Gouvernance 2 pôles : AGE (division PERS) + ADC (division ENT/FORM)",
+  "Principe : une période en CIS à chaque étape de carrière — le cœur de métier avant tout"]},
+ {t:"II. Le cursus d'emploi : de QMF à officier",pts:[
+  "QMF : CIS 2–4 ans ; sans BAT : 11 ans max, départ 9–11 ans (indemnité 14× la solde)",
+  "BAT : flux ~72/an, accès 2–8 ans, prérequis COD2 + IBNB1 + avis du chef de centre → niv. 3, CIS 4 ans (+2)",
+  "BS : flux ~24/an, sélection marine (notations + NFS, TOIEC intégré), ~11 ans de service → niv. 4 ; COMM l'année suivante (27 ans max, sinon BST)",
+  "DQS : +15 ans, BS depuis 2 ans → échelle n°4 (~12 % de la solde) ; CSUP/CDM : flux ~12/an, ~22 ans → chef de groupe OPS 4 ans puis organique 6 ans",
+  "Major : +1 an grade MP, BM, TOIEC ≥ 550 → chef de colonne/CIS ; officier SECUR : concours < 40 ans (QMF < 30 ans bac+3 ; BAT < 30 ans bac ; BS < 37 ans)",
+  "OPEX/MTPE par nécessité de service : Vésubie 2020, Liban 2020, Grèce 2021, Pakistan 2022"]},
+ {t:"III. Les tensions RH — mon rôle de chef de groupe",pts:[
+  "Filière MARPO : 451 postes embarqués / 699 à terre (2016) → réforme du 1er janvier 2022",
+  "Cour des comptes 2018 : absence de GPEC au BMPM — obligatoire pourtant au-delà de 300 agents",
+  "Fidélisation : captation des effectifs vers le civil (référé 28/04/2025) ; réponses : formation continue, primes (DQS), ERS ; maistrance au BMPM quasi annulée",
+  "Chef de groupe : échelon d'exécution — avis du chef de centre pour le BAT, notation, tutorat, accompagnement des candidatures ; je détecte le marin qui décroche avant qu'il ne parte"]}],
+ ccl:"La politique d'emploi est l'articulation entre besoin collectif et aspiration individuelle — un équilibre, pas une donnée. Ouverture : le modèle militaire est une contrainte (tout temps, tout lieu) mais aussi une protection (garantie d'emploi, promotion interne).",
+ qj:{q:"Pourquoi une période en CIS à chaque étape ?",r:"Garantir le cœur de métier et l'employabilité de tous — un cadre ne commande que ce qu'il a pratiqué."},
+ quiz:[
+ {q:"Quel âge maximal pour présenter le COMM après le BS ?",opts:["25 ans","27 ans","30 ans","37 ans"],a:1,ex:"Sinon orientation BST (flux 1/an, échelle 4 mais pas d'emploi OPS de niveau 4)."},
+ {q:"Flux annuel de cours BAT ?",opts:["~12","~24","~72","~200"],a:2,ex:"Flux ~72/an contre ~24/an pour le BS et ~12/an pour le CSUP/CDM."},
+ {q:"Que relève la Cour des comptes 2018 comme manquant au BMPM ?",opts:["Un budget dédié","Une GPEC","Un service de santé","Un COSSIM"],a:1,ex:"Gestion prévisionnelle des emplois et compétences — obligatoire au-delà de 300 personnes."},
+ {q:"En moyenne, à combien d'années de service accède-t-on au CSUP/CDM ?",opts:["~11 ans","~15 ans","~22 ans","~27 ans"],a:2,ex:"~22 ans → chef de groupe OPS 4 ans puis poste organique 6 ans de principe."}]},
+
+{n:5,titre:"CAPINAV",etat:"fiche",full:true,
+ accroche:"13 janvier 2012, le Costa Concordia sombre au large de l'île du Giglio. Trois ans plus tard, le Norman Atlantic brûle en Adriatique. La France comprend qu'aucune chaîne de secours n'est dimensionnée pour le sauvetage maritime de grande ampleur. Naît CAPINAV.",
+ pb:"Comment la France a-t-elle comblé le vide du sauvetage maritime de grande ampleur — et quelle place y occupe le BMPM ?",
+ parties:[
+ {t:"I. Le cadre : une capacité interministérielle",pts:[
+  "Décret n° 2016-1475 du 2 novembre 2016 (Armées + Intérieur), instruction du Premier ministre du 4 mai 2020 ; doctrine commune IBN (DGSCGC)",
+  "Objet : renforcer l'action des moyens maritimes et terrestres, en métropole et outre-mer, quand la dimension et la multiplicité des tâches dépassent l'organisation courante des secours",
+  "6 contrats opérationnels : expertise et aide à la décision · feux de navires · secours à personnes · NRBC · pollutions · contre-terrorisme maritime (BMPM référent national, PIRATEMER depuis 2017)",
+  "Enjeux : gigantisme des navires ; Marseille = 1er port de France, > 2 M croisiéristes/an"]},
+ {t:"II. Gouvernance : le BMPM tête de réseau",pts:[
+  "Art. 5 du décret : la préparation de la réponse est confiée au BMPM — tête de réseau, conseiller maritime du COGIC (expertise, faisabilité, dimensionnement, suivi des disponibilités)",
+  "Composants : BMPM + compagnies de marins-pompiers des bases navales (Brest, Cherbourg, Toulon) + SDIS renforcés (seul SDIS 62 conventionné national, renouvelé 2026)",
+  "DOS : en mer = préfet maritime ; à quai = préfet de département ; activation par la DGSCGC via le COGIC, qui saisit le BMPM via le COSSIM, info au CPCO",
+  "Spécificités IBN : stabilité du navire + gestion des fumées = 2 éléments prédominants ; intervention sous la responsabilité du commandant du navire ; pas de remorquage, pas de plongée"]},
+ {t:"III. Phasage, modules, engagements — mon rôle",pts:[
+  "Phasage : appel COGIC → proposition (COSSIM déclenche, gel des CIS PLB/SMY/LBG, La Blancarde = point de rassemblement) → ordre d'engagement = T0 → départ = T0 + 2 h",
+  "40 MP projetables en 2 h ; montée en puissance < 24 h ; vivier 2 000 militaires ; autonomie 24 h par échelon",
+  "Modules : GIMAé = 14 (DIH + binôme RT + binôme médecin-infirmier) · UMIMM = 9 · GSAP maritime = 11 · GRIMP maritime = 4 ; CTM = UMIMM + GIMAé",
+  "2 activations réelles : Ulysse/CSL Virginia (7 oct. 2018, Cap Corse) · Grande America (mars 2019, projection par Milan 74 depuis Marseille) ; exercice CAPI'Ten (mai 2025, Baie de Seine) ; 10 ans en 2026",
+  "Chef de groupe : tenir T0+2 h = discipline quotidienne (modules prêts, colisage, astreintes, entraînement SOS) ; autonomie 24 h = culture du soutien"]}],
+ ccl:"CAPINAV inscrit le BMPM au cœur de la réponse nationale maritime — légitimité par la triple culture pompier/marin/militaire. Ouverture : gigantisme + décarbonation = nouveaux risques à bord de navires nouveaux.",
+ qj:{q:"Pourquoi le BMPM et pas un SDIS ?",r:"Art. 5 : compétence navire + culture maritime ; interopérabilité avec la Marine et les façades ; chaîne de formation (CETIS, FDN) et modules standardisés."},
+ quiz:[
+ {q:"Quel décret crée la CAPINAV ?",opts:["Le décret 2005-1157","Le décret 2016-1475 du 2 novembre 2016","L'arrêté du 26 octobre 2012","L'instruction du 4 mai 2020"],a:1,ex:"Décret interministériel Armées + Intérieur ; instruction du Premier ministre du 4 mai 2020 pour la mise en œuvre."},
+ {q:"Combien de marins-pompiers projetables en 2 h ?",opts:["20","40","60","100"],a:1,ex:"40 MP en 2 h ; montée en puissance < 24 h ; vivier 2 000 militaires."},
+ {q:"Autonomie de chaque échelon engagé ?",opts:["6 h","12 h","24 h","48 h"],a:2,ex:"Autonomie 24 h (vivres + eau) ; au-delà = charge de l'autorité bénéficiaire."},
+ {q:"Les 2 activations réelles sont ?",opts:["Costa Concordia et Norman Atlantic","Ulysse/CSL Virginia (2018) et Grande America (2019)","Vésubie et Liban","CAPI'Ten et Trappes"],a:1,ex:"2018 Cap Corse et 2019 golfe de Gascogne (projection Milan 74) ; Costa Concordia et Norman Atlantic sont les faits fondateurs."}]},
+
+{n:6,titre:"Intervention métro",etat:"fiche",full:true,
+ accroche:"26 novembre 1977, Marseille inaugure son métro. Aujourd'hui : 2 lignes, 22,7 km, 29 stations — et un chantier de 430 millions d'euros pour l'automatiser. Sous la ville, une rame de 64 mètres circule sur barres de guidage alimentées en 750 volts continu. Notre marge d'erreur y est nulle.",
+ pb:"Comment intervenir dans un milieu clos souterrain à risque électrique permanent, sans aucune improvisation ?",
+ parties:[
+ {t:"I. Connaître le terrain",pts:[
+  "Réseau RTM, métro sur pneumatiques : L1 La Rose↔La Fourragère (12,9 km, 18 stations) ; L2 Gèze↔Ste Marguerite Dromel (9,8 km, 13 stations) ; correspondances St Charles + Castellane ; 5h00–0h30",
+  "Rame : 4 voitures (3 motrices + 1 remorque), 64 m, 472 voyageurs dont 184 assis ; quai 70 m",
+  "Énergie : ENEDIS 20 kV → postes de redressement → 750 V continu sur barres de guidage ; retour négatif par rail porteur ; groupe électrogène mobile 500 kVA",
+  "CSR à La Rose (supervision 24h/24, tel. 5511), interlocuteur SSIAP 2 = celui de l'officier de liaison ; ateliers Gèze + La Rose"]},
+ {t:"II. Risques, points d'appui, doctrine",pts:[
+  "4 risques : feu de rame (quai/tube) · feu de station · blessé sur voie (chute, suicide, électrisation) · attentat",
+  "3 clés : le triangle (coffret pompier extérieur, généphones/rupteurs quais, portes rame) · le PP3 (rideaux métalliques, accès stations/puits) · la 2433A (coffret désenfumage et scénarios)",
+  "LGI = PC du COS (mezzanine) : SSI, coffret désenfumage priorité absolue, plans ; local U (quai) : courts-circuiteurs, lorrys matériel et extraction (2 brancards)",
+  "Puits de pénétration L1 : St Jean, Haïti, des Alpes (surpression, CS, lorry 30 kg/charge 200 kg) ; colonnes sèches 70 mm en station, CS continue dans le tube (raccord 65 tous les 50 m)",
+  "Doctrine : le conducteur ne s'arrête jamais dans le tube → station suivante → envoi massif dès l'alerte ; 4 types d'intervention (courante · technique : COS = chef de colonne obligatoire · incendie · particulière = feu de rame)"]},
+ {t:"III. La sécurisation, cœur du métier — mon rôle",pts:[
+  "Sécurisation = rupteurs + mise hors tension CONFIRMÉE par le CSR + 3 courts-circuiteurs (extrémité station, devant, derrière la rame) ; CC sur la barre de guidage la plus éloignée du quai, tenue de feu complète, décalé de l'axe",
+  "En prompt secours, le chef d'agrès FI peut mener la sécurisation seul — point d'encadrement : je vérifie, je briefe, je contrôle la remise en tension (ordre du COS uniquement, CC retirés, rupteurs remis par le dernier sortant, CIL autorisé)",
+  "St Charles : les 2 lignes se croisent, circuits différents → rupteurs sur tous les quais + CC sur les 2 lignes",
+  "Désenfumage : priorité CSR → LGI → coffret surface ; vert = soufflage, jaune = extraction, rouge = HS",
+  "Réponses feu de rame : station concernée 1 G URB + 1 VSAV + 1 G SAP ; VRCC officier de liaison au CSR ; interface RTM : CIP (réseau) / CIL (local)",
+  "Actus : NEOMMA — 38 rames Alstom automatisées (contrat 2019, 430 M€), M2 2026 puis M1 2027 ; essais nocturnes → draisines en HNO : le risque ne dort plus quand le réseau dort"]}],
+ ccl:"La rigueur procédurale remplace l'improvisation — triangle, PP3, 2433A, sécurisation par 3 verrous. Ouverture : l'automatisation NEOMMA changera l'exploitation, les procédures devront évoluer.",
+ qj:{q:"Que faites-vous si la victime est sous la rame ?",r:"Intervention technique : COS = chef de colonne obligatoire ; sécurisation complète avant pénétration ; lorry d'extraction du local U ; EOS STL en renfort pour le levage."},
+ quiz:[
+ {q:"Combien de stations compte le réseau ?",opts:["22","29","31","35"],a:1,ex:"2 lignes, 22,7 km, 29 stations ; correspondances St Charles + Castellane."},
+ {q:"Tension des barres de guidage ?",opts:["750 V continu","1 500 V continu","20 kV alternatif","25 kV"],a:0,ex:"ENEDIS 20 kV → postes de redressement → 750 V continu ; retour négatif par rail porteur."},
+ {q:"Où se situe le CSR ?",opts:["St Charles","Gèze","La Rose","Castellane"],a:2,ex:"CSR à La Rose (ateliers), supervision 24h/24, tel. 5511 ; interlocuteur SSIAP 2."},
+ {q:"Que fait le conducteur en cas de feu de rame ?",opts:["Il s'arrête dans le tube","Il continue jusqu'à la station suivante","Il fait demi-tour","Il évacue immédiatement dans le tube"],a:1,ex:"Jamais d'arrêt dans le tube → station suivante → envoi massif dès l'alerte."}]},
+
+{n:7,titre:"Intervention en infrastructure",etat:"afaire",full:false,
+ accroche:"Ville tridimensionnelle : parkings, tunnels, galeries — l'incendie se déplace en 3D dans une ville verticale. [chiffres locaux : à vérifier]",
+ pb:"Comment adapter la réponse du BMPM aux milieux clos souterrains urbains — parkings, tunnels, ouvrages complexes ?",
+ parties:[
+ {t:"I. Typologie et risques",pts:[
+  "Typologie : tunnels routiers, parkings souterrains (ERP), galeries et locaux techniques en sous-sol",
+  "Risques : milieu clos, désenfumage limité, propagation verticale, longueur d'établissement, accès restreints, colonnes sèches",
+  "[doctrine OO dédiée : à vérifier — docs Drive « 07 - Intervention en infrastructure »]"]},
+ {t:"II. Points d'appui et doctrine",pts:[
+  "Par analogie métro : coffrets, colonnes sèches, ventilation/désenfumage, coordination exploitant (SSIAP), PC sécurité",
+  "Logique : connaître l'ouvrage AVANT l'intervention (visites, exercices conjoints)",
+  "[procédures exactes : à vérifier]"]},
+ {t:"III. Rôle du chef de groupe",pts:[
+  "Repérage des ouvrages de son secteur, exercices avec les exploitants",
+  "Gestion de l'autonomie air respirable en milieu clos, sécurité des équipiers",
+  "RETEX après chaque intervention en infrastructure"]}],
+ ccl:"L'infrastructure se gagne à la préparation, pas à l'arrivée. Ouverture : les villes sont de plus en plus souterraines. Fiche détaillée à faire.",
+ qj:{q:"Quel est le maître-mot de l'intervention en infrastructure ?",r:"La préparation : connaître l'ouvrage avant l'intervention, coordonner l'exploitant, maîtriser l'aéraulique."},
+ quiz:[
+ {q:"Les 3 points d'appui majeurs en milieu clos souterrain exploité ?",opts:["Hydrants, balles, plans","Coffrets, désenfumage, coordination exploitant","Tenues, radios, VSAV","CIP, CIL, CSR"],a:1,ex:"Structure commune à l'infrastructure et au métro ; l'exploitant (SSIAP) est l'interlocuteur clé."},
+ {q:"Interlocuteur privilégié de l'officier de liaison en milieu souterrain exploité ?",opts:["Le SSIAP","Le maire","Le COS","GRDF"],a:0,ex:"L'agent SSIAP de l'exploitant (au métro : le SSIAP 2 du CSR)."},
+ {q:"Réflexe indispensable avant tout engagement en infrastructure ?",opts:["Confirmer la mise hors tension / sécurisation par l'exploitant","Attendre les renforts","Appeler le COZ","Couper l'eau"],a:0,ex:"L'énergie et le milieu clos commandent la procédure — jamais d'improvisation."}]},
+
+{n:8,titre:"Intervention tramway",etat:"afaire",full:false,
+ accroche:"Le tram revient à Marseille en 2007 ; aujourd'hui des lignes qui traversent l'hypercentre — et une ligne aérienne de contact sous tension en pleine voie publique. [chiffres réseau : à vérifier — fiche perdue, à refaire]",
+ pb:"Comment intervenir sur un mode de transport électrique de surface, en site urbain partagé ?",
+ parties:[
+ {t:"I. Le réseau et ses risques",pts:[
+  "Lignes RTM, site propre et partagé ; risques : ligne aérienne de contact (LAC), tram sectionné, désaillement, piétons et usagers autour",
+  "[caractéristiques exactes du réseau : à vérifier — docs Drive « 08 - Intervention tramway »]"]},
+ {t:"II. Doctrine de sécurisation",pts:[
+  "Mise hors tension confirmée par l'exploitant (analogie métro : CIP/CIL), coupure d'urgence, immobilisation/parcage",
+  "Procédure de désaillement, communication avec le conducteur et la régulation RTM",
+  "[procédure exacte : à vérifier]"]},
+ {t:"III. Rôle du chef de groupe",pts:[
+  "Sécuriser le périmètre (usagers, foule), tenir la procédure électrique sans exception",
+  "Coordination avec la régulation RTM, RETEX"]}],
+ ccl:"Même logique que le métro, en milieu ouvert : l'électricité commande la procédure. Fiche à refaire.",
+ qj:{q:"Quelle différence majeure avec le métro ?",r:"Le milieu est ouvert (foule, voie publique) mais la contrainte est la même : la traction électrique impose mise hors tension confirmée avant engagement."},
+ quiz:[
+ {q:"La traction tramway est alimentée par ?",opts:["Un rail de contact au sol","Une ligne aérienne de contact (LAC)","Une batterie embarquée","Un moteur thermique"],a:1,ex:"La LAC sous tension en pleine voie publique = risque majeur pour les équipes et le public."},
+ {q:"La mise hors tension doit être ?",opts:["Supposée","Confirmée par l'exploitant","Demandée au préfet","Inutile en surface"],a:1,ex:"Confirmation par l'exploitant (logique CIP/CIL du métro) avant tout engagement."},
+ {q:"Risque spécifique du tramway en site partagé ?",opts:["La noyade","Désaillement et piétons autour","Le verglas","L'inondation"],a:1,ex:"Tram sectionné, désaillement, foule : le périmètre et l'usager sont au cœur de la réponse."}]},
+
+{n:9,titre:"Intervention NOVI",etat:"fiche",full:true,
+ accroche:"23 octobre 2026, Trappes : un attentat raciste fait un mort et cinq blessés, le parquet national antiterroriste est saisi. La même semaine, le BMPM s'exerçait au NOVI. La menace n'est pas une hypothèse d'école — c'est notre cadre de travail.",
+ pb:"Comment passer d'une logique de secours courants à une logique de victimes en grand nombre — sans perdre ni le tri, ni la sécurité des équipes ?",
+ parties:[
+ {t:"I. Le cadre : du plan Rouge à l'ORSEC NOVI",pts:[
+  "ORSEC NOVI = disposition générale ORSEC (art. R. 741-8 du code de la sécurité intérieure) ; le décret n° 2005-1157 remplace le plan Rouge ; instruction interministérielle du 2 janvier 2019 = guide national",
+  "Pas de seuil national : déclenchement préfectoral, dès que la réponse courante est dépassée (une dizaine de blessés légers peut suffire)",
+  "Au BMPM : NOVI en complément des dispositions ORSEC, 3 volets : dispositions générales NOVI · spécifiques NRBCE · spécifiques multisites ; attentat = déclinaison de l'ODOMA",
+  "Contexte : 873 076 habitants, 238 km², 17 CIS, ~1 000 appels/jour"]},
+ {t:"II. La réponse BMPM : deux échelons, une chaîne de secours",pts:[
+  "1er échelon : 3 UA + 10 UR — moyens : 1 GP INC · 1 VRCC = COS · 1 GP SAP · 1 VRCG = DSI · 2e GP SAP + MPMA · 1 PCC",
+  "2e échelon : 6 UA + 20 UR — 3 VRCC (DSI, adjoint DSM, officier ramassage) · 2 M SAP · M PCS · M PCA · VRCG au PRM · VA PMA",
+  "Chaîne : zonage (périmètre, entrée/sortie) → ramassage + tri (catégorisation) → PRM → PMA → noria d'évacuation ; plan blanc hospitalier en parallèle",
+  "SINUS 3 phases : bracelet + fiche de triage · saisie tableau des victimes (VRCG) · saisie ARC SINUS",
+  "Chef de groupe : encadrement du ramassage, noria PRV→PMA, sécurité des équipiers (sur-attentat), transmissions vers le PC"]},
+ {t:"III. Les déclinaisons du risque",pts:[
+  "Attentat/explosion : levée de doute NRBC + risque de sur-attentat → sécuriser l'accès des secours ; exercices 2026 : navette tourisme en rade (12/03), stade Vélodrome (15/03, 30 véhicules), navire Corsica Linea (21/11/2025)",
+  "NRBCE : détecter/identifier · zonage · réduire le danger à la source · extraire · médicaliser à l'avant (PRV) · décontaminer ; ALTO (alerte toxique, annoncée 3×) : composante RT + DECONTA ; ALAT : module + module extraction",
+  "Multisite : actes volontaires en moins d'1 h → engagement initial minimal, plan de rappel, renfort COZ, recensement des moyens",
+  "ODOMA (activé par le préfet) : réponse normalisée dégradée — activité courante par 2 FI/GPT, 16 VSAV ville, 1 VRCG/GPT, VRCC ville ; dégradations possibles (GP URBAIN et INC à −1 FI…)"]}],
+ ccl:"Le NOVI n'est pas un surcroît de moyens, c'est une méthode — tri, chaîne, zonage — qui se prépare en exercice toute l'année. Ouverture : multisite et sur-attentat imposent de sécuriser les secourants — le chef de groupe en est le garant.",
+ qj:{q:"Qui peut déclencher le NOVI ?",r:"Le préfet, seul, sans seuil national — dès dépassement de la réponse courante ; au BMPM, le dispositif s'insère dans les dispositions ORSEC existantes."},
+ quiz:[
+ {q:"Quel ensemble textuel encadre l'ORSEC NOVI ?",opts:["Décret 2005-1157 + instruction interministérielle du 2 janvier 2019","Décret 2016-1475","Plan Rouge de 1958","L'ODOMA seul"],a:0,ex:"Art. R. 741-8 du CSI pour le cadre ; l'instruction de 2019 est le guide national."},
+ {q:"Qui déclenche l'ORSEC NOVI ?",opts:["Le maire","Le préfet","Le président de la République","Le commandant du BMPM"],a:1,ex:"Décision préfectorale, sans seuil national — dès que la réponse courante est dépassée."},
+ {q:"Composition du 1er échelon BMPM ?",opts:["1 UA + 3 UR","3 UA + 10 UR","6 UA + 20 UR","10 UA + 3 UR"],a:1,ex:"3 unités d'appoint + 10 unités de reconnaissance ; 2e échelon = 6 UA + 20 UR."},
+ {q:"Que gère l'ODOMA ?",opts:["La réponse courante pendant la menace attentat","Les feux de forêt","Le soutien RH","La météo"],a:0,ex:"Réponse normalisée dégradée : activité courante assurée par 2 FI/GPT, 16 VSAV ville…"}]},
+
+{n:10,titre:"Intervention en milieu maritime",etat:"afaire",full:false,
+ accroche:"1er port de France, plus de 2 millions de croisiéristes par an, GPMM bassins est et ouest — à Marseille, la moitié de la ville est tournée vers la mer, et le risque aussi. [chiffres : à vérifier]",
+ pb:"Comment le BMPM intervient-il en milieu maritime — un milieu où il est le seul acteur de sécurité civile doté de la culture du navire ?",
+ parties:[
+ {t:"I. Le terrain maritime",pts:[
+  "GPMM, bassins est/ouest, port de croisière, rade ; autorité en mer = préfet maritime ; articulation ORSEC maritime / CROSS",
+  "[docs Drive « 10 - Intervention en milieu maritime » : à vérifier]"]},
+ {t:"II. Risques et moyens",pts:[
+  "Feu de navire (stabilité + gestion des fumées — doctrine IBN), homme à la mer, pollution (DEPOL), sauvetage aquatique",
+  "Moyens : modules CAPINAV (GIMAé 14, UMIMM 9, GSAP maritime 11)",
+  "[moyens nautiques BMPM : à vérifier]"]},
+ {t:"III. Articulation CAPINAV + rôle du chef de groupe",pts:[
+  "Thème 5 = versant « renfort national » de la réponse maritime",
+  "En local : connaître les quais, les moyens d'accès à bord, la coordination avec l'équipage et le commandant du navire"]}],
+ ccl:"Le milieu maritime mobilise la triple culture du BMPM à son paroxysme. Ouverture : le gigantisme des navires. Fiche détaillée à faire (croiser avec CAPINAV).",
+ qj:{q:"Qui est directeur des opérations de secours en mer ?",r:"Le préfet maritime (représentant de l'État en mer) ; à quai en amont de la limite transversale : le préfet de département."},
+ quiz:[
+ {q:"En mer, qui est le directeur des opérations de secours ?",opts:["Le préfet maritime","Le préfet de département","Le maire","Le CROSS"],a:0,ex:"Représentant de l'État en mer ; à quai = préfet de département (décret CAPINAV, art. 6-7)."},
+ {q:"Les 2 éléments prédominants d'une intervention à bord (doctrine IBN) ?",opts:["Vitesse et hauteur","Stabilité du navire et gestion des fumées","Cargaison et météo","Équipage et passagers"],a:1,ex:"« Fermeture du cube » : stabilité + fumées ; pas de compétence remorquage ni plongée."},
+ {q:"Quelle capacité nationale adossée au BMPM couvre le renfort à bord des navires ?",opts:["PIRATEMER","CAPINAV","ORSEC maritime","ODOMA"],a:1,ex:"CAPINAV (thème 5) — le BMPM en est la tête de réseau (art. 5 du décret 2016-1475)."}]},
+
+{n:11,titre:"Intervention milieu ferroviaire",etat:"afaire",full:false,
+ accroche:"Gare St Charles, des millions de voyageurs, la LGV passe sous nos pieds — intervenir sur le rail, c'est intervenir dans un milieu électrique où le train ne s'arrête pas parce qu'on le décide. [chiffres : à vérifier]",
+ pb:"Comment intervenir en milieu ferroviaire, milieu à risque électrique majeur et en mouvement ?",
+ parties:[
+ {t:"I. Le terrain ferroviaire",pts:[
+  "Gare St Charles (tunnels, quais souterrains), lignes classiques et LGV, fret ; tensions de traction selon électrification [25 kV / 750 V : à vérifier]",
+  "[docs Drive « 11 - Intervention milieu ferroviaire » : à vérifier]"]},
+ {t:"II. Doctrine de sécurisation",pts:[
+  "Mise hors tension et confirmation par l'exploitant (SNCF), protection de la zone (les trains circulent jusqu'à consigne)",
+  "Signalisation, écartement/refuges, points d'accès ; coordination avec le commandant du train",
+  "[procédure BMPM : à vérifier]"]},
+ {t:"III. Rôle du chef de groupe",pts:[
+  "Sécuriser l'équipe sur les voies (le train que l'on n'a pas vu), interface exploitant",
+  "Gestion des voyageurs débarqués en masse, exercices avec la SNCF"]}],
+ ccl:"Même trame que métro/tram : l'énergie et l'exploitant commandent. Ouverture : croissance du fret. Fiche à faire.",
+ qj:{q:"Quel principe commande la sécurisation ferroviaire ?",r:"La mise hors tension confirmée par l'exploitant (SNCF) et la protection contre les trains en circulation — jamais d'engagement sur voie vivante."},
+ quiz:[
+ {q:"La traction ferroviaire est mise hors tension par ?",opts:["Les pompiers","Le CSR BMPM","L'exploitant SNCF avec confirmation","Le maire"],a:2,ex:"Confirmation par l'exploitant, comme au métro (CSR) et au tramway."},
+ {q:"Quelle gare marseillaise concentre les risques ferroviaires urbains ?",opts:["St Charles","La Blancarde","Arenc","Picon-Busserine"],a:0,ex:"St Charles : tunnels, quais souterrains, correspondance métro — ERP et carrefour multimodal."},
+ {q:"Sur voie, le danger permanent est ?",opts:["Le train en circulation et la traction électrique","Le verglas","La foule","L'eau"],a:0,ex:"Le train que l'on n'a pas vu : écartement, refuges, consignes de protection."}]},
+
+{n:12,titre:"La féminisation au sein du BMPM",etat:"afaire",full:false,
+ accroche:"La mixité n'est pas un sujet de communication, c'est un sujet d'armement. [dates et effectifs : à vérifier — thème pauvre en docs Drive, compléter par web]",
+ pb:"Où en est la féminisation du BMPM, et quels leviers pour aller plus loin ?",
+ parties:[
+ {t:"I. Histoire et cadre",pts:[
+  "Place des femmes dans la Marine nationale et le BMPM ; premières femmes marins-pompiers [à vérifier] ; cadres réglementaires (non-discrimination, statut militaire mixte)",
+  "Le statut militaire est mixte depuis l'origine : rien n'interdit l'accès des femmes aux emplois du BMPM — la question est celle des flux de recrutement et des usages"]},
+ {t:"II. État des lieux",pts:[
+  "Effectifs féminins au BMPM [chiffres : à vérifier], métiers investis (dont SOS), parcours et témoignages",
+  "Comparer avec la moyenne nationale sapeurs-pompiers et la Marine — données à rechercher sur le web avant le jour J"]},
+ {t:"III. Actions et perspectives — rôle du chef de groupe",pts:[
+  "Recrutement ciblé, adaptation des équipements et tenues, mixité des équipes et vie en CIS, exemplarité de l'encadrement",
+  "L'intégration se joue dans le groupe — le chef de groupe est au premier rang"]}],
+ ccl:"La féminisation est un enjeu de ressources humaines et de performance collective. Fiche à faire — compléter par web.",
+ qj:{q:"Comment aborder la féminisation à l'oral sans tomber dans le cliché ?",r:"Comme un enjeu d'armement et de gestion des ressources : le vivier de recrutement, la fidélisation, la mixité comme performance collective."},
+ quiz:[
+ {q:"La féminisation au BMPM est avant tout ?",opts:["Un sujet de communication","Un enjeu de ressources humaines et d'armement","Une obligation légale très récente","Un effet de mode"],a:1,ex:"Vivier de recrutement + fidélisation = performance collective."},
+ {q:"Où trouver des éléments pour ce thème ?",opts:["Drive uniquement","Le web (docs Drive pauvres sur ce thème)","Les archives de la Marine","Nulle part"],a:1,ex:"Thème 12 pauvre en docs Drive → recherche web avant le jour J."},
+ {q:"Quel échelon fait vivre la mixité au quotidien ?",opts:["La direction","Le chef de groupe","Le COSSIM","L'EMPM"],a:1,ex:"L'intégration se joue dans le groupe : exemplarité, équité de traitement, cohésion."}]},
+
+{n:13,titre:"Les accidents en service",etat:"afaire",full:false,
+ accroche:"Tivoli, 9 avril 2023 : 8 morts, ~500 marins-pompiers engagés pendant 4 jours et 4 nuits. L'accident en service n'est pas une fatalité : c'est un risque qui se gère. [dispositifs internes : à vérifier]",
+ pb:"Comment le BMPM prévient-il et gère-t-il les accidents en service — avant, pendant et après ?",
+ parties:[
+ {t:"I. Cadre et définitions",pts:[
+  "Accident de service/travail, ATMP, procédures militaires ; catégories (intervention, trajet, entraînement) [cadre exact : à vérifier]",
+  "Statut militaire : l'obligation de service en tout temps et tout lieu n'exclut pas la protection du militaire — c'est l'équilibre du système"]},
+ {t:"II. Prévention",pts:[
+  "Sécurité des personnels (tenues, autoprotection), préparation opérationnelle (FMPA, caisson MEFER), analyse des incidents, RETEX",
+  "Lien fort avec les thèmes 2 et 15"]},
+ {t:"III. Gestion post-accident — rôle du chef de groupe",pts:[
+  "Enquête, information des familles, soutien psychologique (service local de psychologie appliquée), reconnaissance (médailles du courage)",
+  "Chef de groupe : premier témoin, premier soutien, remontée objective des faits"]}],
+ ccl:"De la prévention à la reconnaissance, une chaîne continue. Ouverture : ESPT et obligations croissantes. Fiche à faire.",
+ qj:{q:"Quelle est la place du chef de groupe dans la gestion d'un accident en service ?",r:"Premier témoin et premier soutien : sécurité immédiate, remontée objective, accompagnement des hommes — l'enquête et l'administration suivent."},
+ quiz:[
+ {q:"Quel événement illustre l'exposition des secourants (thème 13) ?",opts:["Tivoli, 9 avril 2023","Landiras 2022","Trappes 2026","L'exercice CAPI'Ten"],a:0,ex:"8 morts, ~500 MP engagés 4 jours/nuits ; le drapeau du BMPM en a reçu la médaille d'or du courage en 2023."},
+ {q:"Quel service BMPM prend en charge le soutien psychologique ?",opts:["Le service local de psychologie appliquée","Le SAMU","La médecine du travail civile","Aucun"],a:0,ex:"Prévu par l'arrêté du 26/10/2012 — lien avec les thèmes 2 et 15."},
+ {q:"Face à un accident en service, le chef de groupe est ?",opts:["Premier témoin, premier soutien","Un enquêteur judiciaire","Hors de la procédure","Responsable pénal"],a:0,ex:"Il sécurise, alerte, rend compte objectivement et soutient ses hommes."}]},
+
+{n:14,titre:"PAO et RCCI",etat:"afaire",full:false,
+ accroche:"Le marin-pompier n'éteint pas seulement : il protège la vérité des causes. [signification exacte des sigles PAO/RCCI : à vérifier]",
+ pb:"Comment articuler l'action opérationnelle des pompiers avec la recherche des causes de l'incendie ?",
+ parties:[
+ {t:"I. Cadre réglementaire",pts:[
+  "Enquêtes sur les causes des incendies, chaîne judiciaire, réquisition OPJ, constatations et prélèvements [cadre : à vérifier]",
+  "Principe : l'extinction reste prioritaire sur l'enquête, mais le feu éteint mal est une cause perdue — les deux chaînes se coordonnent"]},
+ {t:"II. Le RCCI (validé par la fiche FDF)",pts:[
+  "Engagé par l'OGEM après réquisition OPJ ; peut être demandé par l'ONF ; peut s'auto-engager après accord DIV OPS pour RETEX",
+  "Alimente la base Prométhée (feux > 1 ha) ; dans le 13, la malveillance est souvent derrière les plus grands feux"]},
+ {t:"III. Le PAO — rôle du chef de groupe",pts:[
+  "[définition et doctrine PAO : à vérifier] — l'appui opérationnel fourni aux enquêteurs (main-d'œuvre, matériel, expertise)",
+  "Préserver les indices dès l'engrement : la phase attaque ne doit pas détruire la phase enquête"]}],
+ ccl:"Extinction et recherche de causes sont une seule et même chaîne. Ouverture : feux volontaires et malveillance (cf. thème 1). Fiche à faire.",
+ qj:{q:"Qui engage le RCCI ?",r:"L'OGEM, après réquisition de l'officier de police judiciaire ; l'ONF peut le demander ; auto-engagement possible après accord DIV OPS pour le RETEX."},
+ quiz:[
+ {q:"Par qui le RCCI est-il engagé ?",opts:["L'OGEM après réquisition OPJ","Le CODIS","Le maire","Le préfet maritime"],a:0,ex:"Après réquisition de l'OPJ ; l'ONF peut le demander ; auto-engagement pour RETEX avec accord DIV OPS."},
+ {q:"Quelle base de données recense les feux de plus de 1 ha ?",opts:["Prométhée","SINUS","BDIFF seul","ATLAS"],a:0,ex:"Prométhée (saisie bureau stats) ; BDIFF/IGN au niveau national complètent."},
+ {q:"Dans le 13, derrière les plus grands feux on trouve souvent ?",opts:["La malveillance","La foudre","Le feu spontané","Les barbecues"],a:0,ex:"~60 % des départs = imprudence/accident, mais la malveillance est derrière les plus grands feux."}]},
+
+{n:15,titre:"QVS et RPS",etat:"afaire",full:false,
+ accroche:"~122 000 interventions/an, des gardes de 24 heures, la mort et la violence en face — la santé mentale du marin-pompier est un instrument opérationnel : un groupe fatigué est un groupe dangereux. [chiffres : à vérifier]",
+ pb:"Comment préserver la qualité de vie et la sécurité au travail dans un métier à haut risque opérationnel et psychologique ?",
+ parties:[
+ {t:"I. Définitions et cadre",pts:[
+  "QVS = qualité de vie et sécurité au travail ; RPS = risques psychosociaux (stress, charge, trauma) ; obligations de l'employeur, médecine du travail [cadre BMPM : à vérifier]",
+  "Le militaire échappe au droit du travail classique : d'où l'importance des dispositifs internes propres au BMPM"]},
+ {t:"II. Les risques du métier",pts:[
+  "Astreinte et rythme (122 000 interventions/an), ESPT, fatigue, exposition à la mort (Tivoli 2023), stress post-intervention, agressions [données : à vérifier]",
+  "Le cumul gardes 24 h + interventions nocturnes + charge mentale : la fatigue est un facteur de risque opérationnel à part entière"]},
+ {t:"III. Dispositifs — rôle du chef de groupe",pts:[
+  "Service local de psychologie appliquée ; debriefing post-intervention, entretiens, prévention tertiaire",
+  "Le chef de groupe = premier maillon de la détection : il voit l'équipier qui décroche avant l'institution"]}],
+ ccl:"La QVS n'est pas un confort, c'est une condition de la performance. Ouverture : reconnaissance nationale des ESPT chez les pompiers. Fiche à faire.",
+ qj:{q:"Pourquoi la QVS est-elle un sujet opérationnel et pas un sujet de confort ?",r:"Un groupe fatigué ou traumatisé est un groupe dangereux pour lui-même : la santé mentale conditionne la sécurité de l'intervention."},
+ quiz:[
+ {q:"Que signifie RPS ?",opts:["Risques psycho-sociaux","Règles de prévention en service","Relais de poste de secours","Réserve principale de soutien"],a:0,ex:"Stress, surcharge, trauma — la QVS (qualité de vie et sécurité au travail) vise à les prévenir."},
+ {q:"Quel dispositif BMPM soutient le personnel ?",opts:["Le service local de psychologie appliquée","Le GPEC","L'ERS","Le DQS"],a:0,ex:"Prévu par l'arrêté du 26/10/2012 ; débriefing et entretiens post-intervention."},
+ {q:"Pour le chef de groupe, la santé mentale du groupe est ?",opts:["Un instrument opérationnel","Un sujet médical hors de son rôle","Secondaire","Confidentiel"],a:0,ex:"Premier maillon de la détection : il voit l'équipier qui décroche avant l'institution."}]},
+
+{n:16,titre:"Organisation et fonctionnement du COSSIM",etat:"afaire",full:false,
+ accroche:"~1 000 appels par jour vers le BMPM — derrière chaque départ de garde, une salle, des quarts, une décision. [chiffres COSSIM : à vérifier]",
+ pb:"Comment le COSSIM transforme-t-il 1 000 appels par jour en départs de garde cohérents ?",
+ parties:[
+ {t:"I. Place dans la chaîne",pts:[
+  "Interface CODIS 13 / BMPM, traitement de l'alerte, qualification ; maillon validé par CAPINAV : le COGIC saisit le BMPM via le COSSIM [rattachement exact : à vérifier]",
+  "~1 000 appels/jour : chaque appel qualifié = un départ juste — ni sur-engagement, ni sous-estimation"]},
+ {t:"II. Organisation interne",pts:[
+  "Quarts 24/7, main courante, PC opérationnel, officier de quart, transmissions [composition exacte : à vérifier]",
+  "L'archivage des mains courantes = la mémoire opérationnelle de l'unité (RETEX, contentieux, statistiques)"]},
+ {t:"III. Articulations — rôle du chef de groupe",pts:[
+  "CODIS 13, COZ, CROSS (mer), SDIS/SAMU ; lien avec ODOMA et modes dégradés (thème 9)",
+  "Le chef de groupe consomme et alimente le renseignement opérationnel (RETEX, habilitations, disponibilités)"]}],
+ ccl:"Le COSSIM est le cerveau de la réponse. Ouverture : outils numériques et aide à la décision. Fiche à faire.",
+ qj:{q:"Quel rôle joue le COSSIM dans CAPINAV ?",r:"Le COGIC saisit le BMPM via le COSSIM, qui déclenche : constitution du détachement, gel des CIS, point de rassemblement La Blancarde."},
+ quiz:[
+ {q:"Dans CAPINAV, par qui le COGIC saisit-il le BMPM ?",opts:["Via le COSSIM","Via le CODIS 13","Via le COZ","Directement l'amiral"],a:0,ex:"Le COSSIM est le maillon BMPM du déclenchement CAPINAV."},
+ {q:"Ordre de grandeur des appels par jour au BMPM ?",opts:["~100","~1 000","~10 000","~122 000"],a:1,ex:"~1 000 appels/jour pour ~122 000 interventions/an."},
+ {q:"Le COSSIM est l'interface du BMPM avec ?",opts:["Le CODIS 13","Le maire","La presse","L'EMPM"],a:0,ex:"Traitement de l'alerte et qualification ; articulation également avec COZ, CROSS, SAMU."}]},
+
+{n:17,titre:"Innovation et processus capacitaire",etat:"afaire",full:false,
+ accroche:"Du caisson MEFER au ballon captif des Calanques, le BMPM innove — l'innovation opérationnelle ne tombe pas du ciel : elle naît d'un besoin exprimé du terrain. [exemples : à vérifier]",
+ pb:"Comment un besoin du terrain devient-il une capacité opérationnelle au BMPM ?",
+ parties:[
+ {t:"I. Le processus capacitaire",pts:[
+  "Expression de besoin → rapport technique CDM → validation → mise en service (doctrine + formation + MCO) [étapes exactes : à vérifier]",
+  "Exemples validés : rapports techniques CDM (CAPINAV impacts SOS, caisson MEFER, planification EMPM)"]},
+ {t:"II. L'innovation au BMPM",pts:[
+  "Caisson à feu réel MEFER (CSF, FMPA en alternance caisson/simulateur), appui robotisé, ballon captif de surveillance (800 m), NEOMMA côté exploitation, doctrine commune IBN",
+  "L'innovation n'est pas l'achat : c'est la chaîne besoin → doctrine → formation → MCO qui transforme un objet en capacité"]},
+ {t:"III. Du besoin à la capacité — rôle du chef de groupe",pts:[
+  "Le RETEX du groupe = première source d'innovation ; je remonte les besoins (matériel, procédure), je teste, je forme",
+  "Je suis aussi utilisateur-pilote : une capacité mal utilisée sur le terrain remonte par mon rapport, pas par le constructeur"]}],
+ ccl:"La capacité = besoin + doctrine + formation + MCO, pas seulement un achat. Ouverture : nouvelles menaces = nouvelles capacités (drones, NRBCe, navires à nouvelles énergies). Fiche à faire.",
+ qj:{q:"Qu'est-ce qui déclenche le processus capacitaire ?",r:"L'expression du besoin, portée notamment par les rapports techniques CDM — le RETEX du terrain en est la première source."},
+ quiz:[
+ {q:"Quel outil d'entraînement au feu réel est cité au BMPM ?",opts:["Le caisson MEFER (CSF)","Un simulateur de pont","Une piscine à vagues","Un mannequin virtuel"],a:0,ex:"Module d'entraînement sur feux réels — compréhension système feu, FMPA en alternance caisson/simulateur."},
+ {q:"Dans le processus capacitaire, tout commence par ?",opts:["Un achat","L'expression du besoin (rapport technique CDM)","Une décision du maire","Un exercice"],a:1,ex:"Le besoin exprimé du terrain, formalisé en rapport technique CDM, puis validé."},
+ {q:"La première source d'innovation est ?",opts:["Le RETEX du terrain","Les constructeurs","La mode","Le budget"],a:0,ex:"Le RETEX du chef de groupe : besoins (matériel, procédure), test, formation."}]},
+
+{n:18,titre:"Accès au BHT et CCDM",etat:"fiche",full:true,
+ accroche:"Le brevet de haute technicité, ~20 semaines de formation : le moment où le marin-pompier cesse d'être celui qui manœuvre pour devenir celui qui conduit. C'est le sujet même de mon engagement.",
+ pb:"Comment le BMPM sélectionne-t-il et forme-t-il ses futurs chefs de groupe — et ce que ce parcours exige de moi ?",
+ parties:[
+ {t:"I. Les conditions d'accès",pts:[
+  "Être BS ; sélection marine : notations + points NFS (TOIEC intégré) ; avis de la hiérarchie (jusqu'au chef de centre)",
+  "Réforme VAREQ (instruction DPMM 21/06/2012) : tutorat entre sélection et cours → BAT tutoré plus court ; livret de tutorat (e-FORM), bilan mi-parcours, tests à l'arrivée",
+  "Démarche : appel d'offres DIV ENT/FORM → avis capitaines de compagnie sur prérequis → ordre de circonstance → certification (PV d'examen) → suivi RH (avancement, ERS)",
+  "[prérequis exacts BHT : à vérifier — docs Drive « 18 »]"]},
+ {t:"II. Le parcours : BHT puis CCDM",pts:[
+  "BHT (~20 semaines) : cadrage REM niveau II, NF 3a/3b — la formation du chef de groupe",
+  "Puis CSUP/CDM (cours supérieur cadre de maîtrise) : flux ~12/an, ~22 ans de service en moyenne ; jury + mémoire/rapport technique",
+  "Après : chef de groupe OPS 4 ans (chef de secteur OPS/TECH, officier de garde), puis poste organique cadre de maîtrise 6 ans de principe (chef de détachement Frioul 3 ans) ; incitation à l'embarquement",
+  "Perspectives : DQS (+15 ans, échelle 4) ; major (BM, TOIEC ≥ 550) ; officier SECUR (BS < 37 ans)"]},
+ {t:"III. Ce que ce parcours construit — mon regard",pts:[
+  "Le BHT ne surajoute pas des gestes : il change l'échelle — de chef d'agrès (conduite de l'engin, une équipe) à chef de groupe (conduite de l'action, interface COS, encadrement)",
+  "Le CCDM ajoute la dimension collective : management, mémoire technique, jury — former ceux qui formeront",
+  "Le chef de groupe BHT est un pivot : il traduit la doctrine en geste (FMPA, entraînement), il remonte le RETEX, il prépare ses BS — la pyramide tient par lui"]}],
+ ccl:"L'accès au BHT-CCDM est une sélection rigoureuse (notations, NFS, avis) suivie d'une formation longue et couronnée par un jury — un parcours qui protège la qualité de l'encadrement. Ouverture : la fidélisation des cadres de maîtrise conditionne la pyramide.",
+ qj:{q:"Différence BHT / BM ?",r:"BHT = brevet de spécialité technique (chef de groupe opérationnel) ; BM = brevet de maîtrise, vers le grade de major (chef de colonne/CIS, niv. 6) — deux marches distinctes de la même pyramide."},
+ quiz:[
+ {q:"Durée du cours BHT ?",opts:["~8 semaines","~11 semaines","~20 semaines","4 ans"],a:2,ex:"~20 semaines ; cadrage REM niveau II, NF 3a/3b."},
+ {q:"Flux annuel du CSUP/CDM ?",opts:["~1","~12","~24","~72"],a:1,ex:"Flux ~12/an, ~22 ans de service en moyenne ; jury + mémoire."},
+ {q:"Après le BHT, le chef de groupe OPS occupe son poste pendant ?",opts:["2 ans","4 ans","6 ans","8 ans"],a:1,ex:"4 ans en OPS, puis poste organique cadre de maîtrise 6 ans de principe."},
+ {q:"La sélection BS s'appuie sur ?",opts:["Notations + points NFS (TOIEC intégré)","Le tirage au sort","L'ancienneté seule","L'avis du maire"],a:0,ex:"Sélection marine : notations + NFS avec TOIEC intégré ; avis du chef de centre."}]},
+
+{n:19,titre:"Les décorations",etat:"fiche",full:true,
+ accroche:"9 avril 2023, rue Tivoli : 8 morts, ~500 marins-pompiers engagés, 4 jours et 4 nuits. Le 6 mai 2023, la médaille d'or du courage est épinglée sur le drapeau du BMPM. Une collectivité tout entière décorée.",
+ pb:"Comment le système français des décorations fonctionne-t-il — et comment le chef de groupe en devient un acteur, pas un spectateur ?",
+ parties:[
+ {t:"I. Un système national codifié",pts:[
+  "Deux familles : ordres nationaux (décret du président) vs médailles ministérielles (délégations possibles)",
+  "Légion d'honneur : 19 mai 1802 — code du 6 déc. 1962, grand maître = président, 4 promotions/an (civiles 1er janv. + 14 juillet ~600/pers ; militaires 2e trimestre + novembre ; promotion de Pâques supprimée en 2018)",
+  "Médaille militaire : 22 janvier 1852 (« LH du sous-officier », 3e préséance) ; ONM : 3 déc. 1963 (4e préséance)",
+  "Médailles : MDN 21 avril 1982 (bronze/argent/or, délégation aux autorités militaires de 1er niveau) · MSI 28 mars 2012 (agrafe « Sapeurs-pompiers », CSI art. D.141) · médaille du courage 17 mars 1970 (3 échelons, possible à titre collectif)"]},
+ {t:"II. Le BMPM doublement décoré",pts:[
+  "Drapeau : 30 avril 1982 (Charles Hernu), 8e drapeau décoré de la Marine ; garde = 13 MP décorés/méritants",
+  "3 décorations du drapeau : MSI or 2019 · MDN or palmes 2020 · médaille d'or courage/dévouement 2023 pour Tivoli",
+  "Cadre interne : fonction Tradition NP 1.24 (7 mai 2024) ; cérémonial d'investiture des chefs de CIS IP CDT 1.8 ; Appel du 18 Juin OP CDT n°25 ; promotions de l'école présentées au drapeau"]},
+ {t:"III. Le chef de groupe, acteur du mérite",pts:[
+  "Documenter et remonter : la délégation MDN est aux autorités de 1er niveau — le mérite commence en unité, le chef de groupe est le premier témoin des actes de ses hommes",
+  "Entraîner et expliquer : honneurs au drapeau, sens des traditions — une décoration collective de ~500 hommes n'a de sens que si chacun comprend pourquoi",
+  "Cohésion et exemplarité : parcours décoratif des subordonnés, port des décorations, transmission",
+  "Ouverture : initiative citoyenne renforcée 2025 (20 cas le 14 juillet 2026), parité des promotions"]}],
+ ccl:"Les décorations sont un système codifié (ordres vs médailles) qui récompense l'exceptionnel — et le BMPM l'a prouvé trois fois sur son drapeau. Ouverture : le système évolue vers la société (initiative citoyenne, parité).",
+ qj:{q:"Ordre national ou médaille ministérielle ?",r:"Ordre = communauté codifiée instituée par décret du président (LH, MM, ONM) ; médaille = distinction ministérielle (MDN, MSI, courage), souvent avec délégation."},
+ quiz:[
+ {q:"Date de création de la Légion d'honneur ?",opts:["22 janvier 1852","19 mai 1802","3 décembre 1963","30 avril 1982"],a:1,ex:"Créée par Napoléon ; code du 6 déc. 1962 ; grand maître = président de la République."},
+ {q:"Le drapeau du BMPM (30 avril 1982) est ?",opts:["Le 3e drapeau décoré de la Marine","Le 8e","Le 1er","Le 21e"],a:1,ex:"8e drapeau décoré de la Marine nationale ; garde assurée par 13 MP."},
+ {q:"Combien de marins-pompiers assurent la garde du drapeau ?",opts:["3","8","13","60"],a:2,ex:"13 MP décorés ou méritants."},
+ {q:"Quel événement a valu la médaille d'or du courage 2023 au drapeau ?",opts:["L'effondrement rue Tivoli (9 avril 2023)","Landiras 2022","La tempête de 2010","Le feu du Grande America"],a:0,ex:"8 morts, ~500 MP engagés, 4 jours/nuits — décoration collective."}]},
+
+{n:20,titre:"Les sanctions",etat:"afaire",full:false,
+ accroche:"Le chef militaire n'est pas seulement un technicien : il détient une part de l'autorité publique — et avec elle, le pouvoir de sanctionner. Un pouvoir qui s'exerce dans un cadre strict. [échelle exacte : à vérifier]",
+ pb:"Comment s'exerce le pouvoir disciplinaire au sein du BMPM — et quel rôle y joue le chef de groupe ?",
+ parties:[
+ {t:"I. Cadre juridique",pts:[
+  "Code de la défense, statut général des militaires ; autorité disciplinaire du chef",
+  "Sanctions 1er degré (rappels à l'ordre, consigne, arrêts simples) et 2e degré (arrêts de rigueur…) [durées et modalités : à vérifier]"]},
+ {t:"II. L'échelle et la finalité",pts:[
+  "Gradation, proportionnalité, droits du puni (recours) ; la sanction militaire est d'abord éducative : rétablir la discipline pour maintenir la capacité opérationnelle [articulation interne : à vérifier]",
+  "Le chef qui sanctionne assume sa sanction : jamais de sanction collective, jamais à chaud, toujours suivie d'un entretien"]},
+ {t:"III. Rôle du chef de groupe",pts:[
+  "Prévention (exemplarité, clarté des consignes), sanction du 1er degré mesurée, écoute avant de punir, suivi du puni",
+  "Lien avec le soutien et la QVS (thèmes 2 et 15)"]}],
+ ccl:"Sanctionner juste, c'est commander juste. Ouverture : équilibre discipline/fidélisation. Fiche à faire.",
+ qj:{q:"Quelle est la finalité première de la sanction militaire ?",r:"Éducative : rétablir la discipline pour maintenir la capacité opérationnelle — pas une punition gratuite."},
+ quiz:[
+ {q:"Les sanctions militaires se répartissent en ?",opts:["1er et 2e degré","Mineures et majeures","Civiles et pénales","Orales et écrites"],a:0,ex:"1er degré (rappels à l'ordre, consigne, arrêts simples) et 2e degré — [échelle exacte à vérifier]."},
+ {q:"La sanction militaire est d'abord ?",opts:["Éducative — rétablir la discipline","Une vengeance","Un outil RH","Publique"],a:0,ex:"Elle maintient la capacité opérationnelle du groupe."},
+ {q:"Le chef de groupe sanctionne en veillant à ?",opts:["Prévention, proportionnalité, suivi du puni","L'uniformité absolue","La sanction collective","L'oubli"],a:0,ex:"Exemplarité et clarté des consignes AVANT la sanction ; écoute et suivi APRÈS."}]},
+
+{n:21,titre:"Organisation générale / opérationnelle du BMPM",etat:"fiche",full:true,
+ accroche:"2 035 marins-pompiers, 17 casernes, ~122 000 interventions par an, un seul commandement. Le BMPM est une unité de la Marine nationale qui protège la deuxième ville de France — un statut unique en Europe.",
+ pb:"Comment une unité militaire maritime organise-t-elle la sécurité civile d'une métropole ?",
+ parties:[
+ {t:"I. Statut et commandement",pts:[
+  "Arrêté du 26 octobre 2012 : état-major, unités d'intervention, unités de service et de soutien, unités d'instruction, service de santé et de secours médical",
+  "L'amiral : directeur du SSI de la ville de Marseille + commandant de la Marine à Marseille ; secondé d'un commandant en second chef d'état-major ; adjoint organique territorial",
+  "2 035 marins-pompiers, 2 554 agents — plus grosse unité de la Marine ; ~1 000 appels/jour",
+  "Financement : la commune et les organismes conventionnés financent la totalité ; la Marine au prorata des élèves EMPM (art. 9)"]},
+ {t:"II. Les 3 pôles",pts:[
+  "Pôle commandement : amiral + état-major",
+  "Pôle direction : état-major à 6 divisions (dont administration-RH-finances, affaires générales)",
+  "Pôle exécution : GO Nord + GO Sud, secteurs autonomes Port-de-Bouc et Marignane, 17 CIS ; groupement de soutien (CTB, EOS STL) ; groupement santé (Frédéric Paré, SMUR AP-HM) ; unités d'instruction (EMPM, CETIS, école de conduite, CMFPS) ; service local de psychologie appliquée",
+  "Couverture : ville de Marseille + sites conventionnés (aéroport, GPMM bassins est/ouest)"]},
+ {t:"III. Le fonctionnement opérationnel — mon rôle",pts:[
+  "Chaîne de réponse : alerte → COSSIM (traitement, qualification) → départ des CIS → COS → renforts (CODIS 13 → COZ)",
+  "Spécificités : posture FDF saisonnière (350 MP socle + 170 FDF, 43–45 CCF) ; SOS (GRIMP, DEPOL, RT, DIH, modules CAPINAV) ; milieux particuliers (métro/tram)",
+  "Chef de groupe : l'échelon où la doctrine devient geste — disponibilité de mes groupes, entraînement, liaison COSSIM et secteurs ; point de jonction entre l'organisation sur le papier et l'opération réelle"]}],
+ ccl:"Le BMPM réconcilie deux mondes — une organisation militaire de la Marine au service exclusif d'une commune — par un commandement unique et un financement conventionné. Ouverture : la Cour des comptes (2025) demande d'évoluer gouvernance et financement.",
+ qj:{q:"Double tutelle (Ville/Marine) : contrainte ou richesse ?",r:"Les deux : contrainte budgétaire et de gouvernance, mais c'est elle qui produit la triple culture pompier/marin/militaire — l'atout du BMPM."},
+ quiz:[
+ {q:"L'amiral commandant le BMPM est aussi ?",opts:["Directeur du SSI de Marseille + commandant de la Marine à Marseille","Préfet maritime","Maire-adjoint","Gouverneur militaire"],a:0,ex:"Double casquette unique ; secondé d'un commandant en second chef d'état-major."},
+ {q:"Combien de divisions à l'état-major ?",opts:["4","6","8","10"],a:1,ex:"EM à 6 divisions dont administration-RH-finances et affaires générales."},
+ {q:"Combien de CIS arment le BMPM ?",opts:["13","15","17","26"],a:2,ex:"17 CIS — et 26 sites/entités au total (revue bâtimentaire 2023)."},
+ {q:"Les unités d'intervention du pôle exécution sont ?",opts:["GO Nord, GO Sud, secteurs autonomes Port-de-Bouc et Marignane","17 CIS indépendants","EMPM et CETIS","Groupement soutien et santé"],a:0,ex:"+ 17 CIS ; l'instruction et le soutien sont des unités distinctes du même pôle."}]}
+],
+
+TRANSVERSAL:[
+ "Directive 102 : thèmes 3, 4, 18 (cursus ↔ emploi ↔ BHT)",
+ "Arrêté du 26/10/2012 : thèmes 2, 16, 21 (organisation)",
+ "Cour des comptes 2025 (gouvernance, fidélisation) : thèmes 2, 4, 12, 21",
+ "CAPINAV : thèmes 5, 10, 17 · COSSIM : thèmes 5, 16, 21 · Psychologie appliquée : thèmes 2, 13, 15",
+ "Tivoli 2023 : thèmes 13, 15, 19 · NEOMMA : thème 6 · Trappes 2026 : thème 9",
+ "RETEX = or du chef de groupe : fil rouge utilisable dans les 21 thèmes"],
+
+SURPRISES:["Le BMPM face aux grands événements","Le sauvetage aquatique et la noyade","La protection civile européenne","Le pompier face au changement climatique","Manager une équipe militaire au quotidien","La Marine nationale et la souveraineté en Méditerranée","Les drones au service des secours","Le secours en espace confiné","L'hélicoptère dans les secours","La prévention, parente pauvre ou cœur du métier ?"],
+
+DTP:{
+ format:[["Durée","2 heures"],["Position","Chef d'agrès FI (souvent avec EPA/MEA)"],["Support","Ordre de mission + planche ATLAS + photos ASLL (T0, T+2, T+5)"],["Objet","Retranscrire ton raisonnement tactique — pas un cours"],["Barème /20","Prise d'alerte 4 pts · ASLL 6 pts · Actions 4 pts · Passation 6 pts"]],
+ regle:"Tes 4 titres = les 4 rubriques du barème. Le correcteur cherche ses points : I. GESTION DE L'ALERTE, II. ASLL, III. ACTIONS, IV. PASSATION, dans cet ordre. Analyse en points, phrases courtes, pas de paraphrase.",
+ timing:[["0:00–0:10","Lecture complète du sujet (OM + photos + atlas)"],["0:10–0:35","I. Gestion de l'alerte (4 pts)"],["0:35–1:20","II. ASLL — le plus gros morceau (6 pts)"],["1:20–1:45","III. Actions (4 pts)"],["1:45–2:00","IV. Passation (6 pts)"]],
+ trame:[
+  {t:"I. Gestion de l'alerte (4 pts)",subs:[
+   {h:"Compréhension du message",pts:["Présent : date/heure, nature précise, adresse + étage, moyens du 1er départ, renforts (DN1), services prévenus (GRDF/ENEDIS, police), fréquence tactique","Absent (toujours le dire !) : étages/famille du bâtiment, victimes, ce qui brûle, état des communs, coupures effectives, routes barrées/PI HS, météo","Contexte temporel : heure → occupation probable, circulation, visibilité, saison"]},
+   {h:"Éléments favorables / défavorables (par rubrique)",pts:["Lieux : proximité CIS (transit court = arrivée en phase de croissance = risque thermique), hydrant (atlas), accès, stationnement, mitoyenneté","Horaire : occupants présents ?, circulation, obscurité","Bâtiment (anticipé) : ancien type marseillais (canisse, pas d'escalier encloisonné) ou moderne (3e famille, colonne sèche), étage, stockage communs","Engins/renforts : EPA au départ = action hauteur immédiate (3 binômes = 3 actions max) ; renforts DN1 annoncés ; délais de transit","Ressources : GRDF/ENEDIS prévenus mais effectivité non confirmée ; police ou non","Météo/vent : direction des fumées, positionnement sous le vent"]},
+   {h:"Prise en compte de la mission",pts:["Lecture de l'OM à voix haute à l'équipe (compréhension commune, préparation mentale)","PATR = Personnel (effectif complet, aptes) · Armement (ARI, LDV, lot sauvetage, TIC, explosimètre opérationnels) · Tenue (de feu complète dès le départ) · Radio (test, canaux, liaison COSSIM/MEA)","Atlas : hydrants, colonnes sèches, accès, défense extérieure — déléguer la consultation à un chef de binôme si besoin","Coordination avec le chef d'agrès MEA (itinéraire, placement à l'arrivée)","Ordre de mouvement au conducteur : DPIF = Direction, Point à atteindre, Itinéraire, Formation (conduite, piétons)"]}]},
+  {t:"II. ASLL (6 pts)",subs:[
+   {h:"Placement et premiers gestes",pts:["Dépasser légèrement l'adresse pour vision globale ; FI jamais sous les ouvrants ; laisser la place à l'EPA et aux renforts ; côté hydrant","Message d'ambiance immédiat : « SAXO/COSSIM du FI… suis sur les lieux [adresse]. Feu d'appartement confirmé au 6e, R+6, fumée noire épaisse sous pression par 2 fenêtres façade Alpha. Personne visible au balcon au-dessus. Demandons chef de groupe + confirmation coupures gaz/électricité. » (engins, constat, intentions, demandes)","Requérant/témoins : ce qui brûle, victimes/manquants, clés, énergies, configuration ; rassurer/orienter les occupants visibles"]},
+   {h:"Analyse du feu — B-SAHF lettre par lettre",pts:["B — Bâtiment : type/famille, structure (béton/canisse), étages, moyens de secours (colonne sèche, escalier encloisonné, exutoire), communications existantes (escalier, gaines, ascenseur = voies de propagation), mitoyenneté, façades A/B/C/D, ERP en RDC","S — Fumée : couleur (noire épaisse = combustion incomplète, charge calorifique ; grise = manque d'oxygène ; claire = pyrolyse), volume, vélocité, pression (sous pression = surpression interne = risque thermique), occupation de l'ouvrant (toute la hauteur = zone neutre basse = proche embrasement), respiration/pulsations = backdraft","A — Aéraulique : unidirectionnel ou bidirectionnel (entrant/sortant par le même ouvrant → plan neutre), entrants potentiels, vent, tirage cage d'escalier","H — Chaleur : vitres noircies/craquelées, peinture cloquée, persiennes fondues, suie en façade ; TIC systématique ; estimation 800–1 000 °C possibles en plein développement","F — Flammes : visibles ou non, couleur (jaune = combustion vive ; rouge-orangé = manque de comburant), volume, léchage de façade, progression T0/T+2/T+5","Bruit : craquements = forte chaleur"]},
+   {h:"Déduction de la phase du feu (synthèse obligatoire)",pts:["Naissant / croissance / plein développement / décroissance ; limité par le combustible (FLC) ou par la ventilation (FLV) — conditionne la tactique","Risques : flashover (feu ventilé qui s'embrase), backdraft (feu sous-ventilé + air brutal), FGI ; toute ouverture = contrôlée, lance en protection"]},
+   {h:"Analyse sécuritaire",pts:["Dangers : thermiques (flashover/backdraft), toxiques (CO, HCN), structurels (effondrement canisse), chutes, énergies non coupées, panique","Enjeux : vitaux (occupants sinistré + voisins via communs + intervenants) > matériels (limiter propagation et dégâts d'eau, préserver les indices) > environnementaux (fumées, eaux d'extinction)","Risques/propagation : verticale (CE, gaines, façade, balcons) et horizontale (mitoyenneté, ERP RDC)"]}]},
+  {t:"III. Actions (4 pts)",subs:[
+   {h:"Priorités dans l'ordre",pts:["1. Sauvetage · 2. Attaque/extinction · 3. Protection (stopper la propagation : étages sup., communs, mitoyens) · 4. Sécurisation/commandement (périmètre, coupures, liaison)","Coupures : demander/confirmation d'effectivité gaz + électricité ; repérer la vanne gaz en façade","SMES aux équipes : Situation / Mission / Exécution"]},
+   {h:"Missions par fonction (les nommer)",pts:["B1 (attaque) : reconnaissance armée (LDV + TIC + forcement) par la cage d'escalier ; ne JAMAIS ouvrir la porte palière sans lance en protection ni ordre ; refroidir les fumées au palier ; attaque LDV 500 ; coupure électrique au palier ; victimes prioritaires","B2 (alimentation/appui) : alimentation FI sur PI ; établir/diviser la LDV 500 pour B1 ; couper le gaz pied de bâtiment ; fermer les ouvrants des communs (limiter l'air) ; recueillir les renseignements","MEA/EPA : reconnaissance extérieure des façades, placement sauvetage en hauteur, attaque extérieure d'atténuation si besoin — prudence : effets de ventilation","Conducteur : sécurité de l'engin, pompe/pression, point relais radio, périmètre immédiat, éclairage, attaque d'atténuation LDT sur la fenêtre en coordination","VSAV : prise en charge des victimes, PRV, demande AR/VSAV supp. si besoin"]},
+   {h:"Renforts et interdits",pts:["Personne sous les ouvrants : interdit (projectiles, chutes, flux thermiques)","Renforts demandés : chef de groupe (VRCG), DN, groupe incendie, groupe SAP, VMS ; point d'engagement des renforts"]}]},
+  {t:"IV. Passation au chef de groupe (6 pts)",subs:[
+   {h:"Bilan actions",pts:["Actions effectuées : arrivée, placement engins, message d'ambiance, reconnaissance armée, alimentation PI, EPA en station, périmètre","Actions en cours : progression B1 au palier, attaque LDV, sauvetage EPA, évacuation/recensement"]},
+   {h:"Enjeux à court terme",pts:["Risque vital (victimes à rechercher/extraire), imminence flashover/FGI (sécurité des équipes), contrôle du foyer, confirmation des coupures, état des communs"]},
+   {h:"Enjeux à moyen terme (à planifier par le CDG)",pts:["Maîtrise de la propagation (verticale/horizontale), ventilation opérationnelle (offensive/défensive), renforts (2e départ feu, GPP relève ARI, AR dégarnissage, SSO si victimes)","Reconnaissances étendues (étages voisins, combles/toiture, façade C non vue), gestion des impliqués (recensement, PRV, relogement mairie), limitation des dégâts d'eau","Sectorisation, coordination police/GRDF/ENEDIS, déblai + surveillance post-extinction (TIC, mesures CO), RETEX","La passation se fait en face-à-face avec le CDG : hiérarchiser, pas seulement lister"]}]}],
+ reflexes:["Lister ce qui manque vaut autant de points que ce qui est là (présent/absent)","Toujours demander la CONFIRMATION d'effectivité des coupures (prévenu ≠ coupé)","Jamais d'ouverture sans lance en protection (porte palière, fenêtre)","Personne sous les ouvrants — le rappeler dans la copie","Message d'ambiance dès l'arrivée — le rédiger mot pour mot","TIC systématique pour toute reconnaissance","Anticiper le milieu marseillais : canisse, mitoyenneté, stockage communs, stationnement anarchique, badauds","Écrire par rubriques titrées = le correcteur coche ses points en te lisant","L'horaire et la météo sont des données d'analyse, pas de la décoration","Garder du temps pour la passation (6 pts !) — la partie la mieux payée"],
+ glossaire:[["OM","Ordre de mission"],["ASLL","Analyse de la situation locale"],["B-SAHF","Bâtiment, Fumée, Aéraulique, Chaleur, Flammes"],["FLC / FLV","Feu limité par le combustible / par la ventilation"],["FGI","Feu de gaz imbrûlés"],["PATR","Personnel, Armement, Tenue, Radio"],["DPIF","Direction, Point à atteindre, Itinéraire, Formation"],["SMES","Situation, Mission, Exécution, Sécurité"],["DN / DN1","Départ normal incendie (niveau 1)"],["EGDF","Engagement gaz de France (consigne GRDF)"],["CDG / CA / COS","Chef de groupe / chef d'agrès / commandant des opérations de secours"],["MEA / EPA","Moyen élévateur aérien"],["B1 / B2","Binôme d'attaque / binôme d'alimentation"],["LDV 500 / LDT","Lance à débit variable 500 l/min / lance débit tariquée (atténuation)"],["TIC","Caméra thermique"],["PRV","Point de rassemblement des victimes"],["CE","Communications existantes (escaliers, gaines, ascenseurs…)"],["PI / BI","Poteau / bouche d'incendie"],["RIM / PTR","Renfort immédiat (T+5)"],["SAXO","Canal radio opérationnel"]],
+ exemple:{t:"Feu Parc Bellevue E26 — 06/01/2020 19h46",pts:[
+  "Sujet : feu de cuisine au 6e étage d'un R+6 habitation, 143 rue Félix Piat, St Mauront ; départ FI PLB + FI LBG + EPA PLB + VSAV SLZ + VRCG PLB + VMS CMP + VARI ; GRDF/ENEDIS prévenus",
+  "Alerte : 19h46 (occupants présents, nuit tombante) ; quartier populaire (stockage communs, badauds, stationnement anarchique) ; 6e étage (propagation verticale, colonne sèche probable) ; pas la police ; absents : victimes, nombre d'étages, état des communs",
+  "ASLL : fumée noire épaisse sous pression occupant toute la hauteur d'ouvrant = zone neutre basse, feu très actif proche embrasement ; bidirectionnel ; vitres noircies ; personne au balcon SOUS le sinistre ; 3e famille années 80, escalier non encloisonné avec exutoire",
+  "Actions : B1 reconnaissance armée + LDV 500 + protection palier 6e ; B2 alimentation PI + gaz ; EPA sauvetage balcon + façades ; conducteur attaque d'atténuation LDT ; périmètre ; demande confirmation coupures",
+  "Passation : court terme = victimes + flashover + foyer ; moyen terme = propagation, renforts, ventilation, impliqués, déblai, CO"]}
+},
+
+CDG:{
+ role:["Traduire la doctrine en geste : FMPA, entraînement, tutorat pré-BAT de mes équipiers","Remonter le RETEX — première source d'innovation et de propositions de décorations","Premier échelon de soutien : habilitations, maintenance, détection de la fatigue et de la décroche","Sécuriser ses équipes : sur-attentat (NOVI), ouvrants, énergie, autonomie ARI","Interface COS ↔ équipiers : SMES clairs, missions par fonction, transmissions","Former ceux qui formeront : préparer mes BS aux promotions — la pyramide tient par moi"],
+ chiffres:[["2 035","marins-pompiers (2 554 agents) — plus grosse unité de la Marine"],["17","CIS (26 sites)"],["~122 000","interventions/an · ~1 000 appels/jour"],["350 / 170","MP socle 24/7/365 / MP dédiés FDF en saison"],["43–45","CCF pré-positionnés les jours à risque FDF"],["40","MP projetables en 2 h (CAPINAV, T0+2 h)"],["~20 sem.","de cours BHT ; CSUP/CDM ~22 ans de service, flux ~12/an"],["4 + 6","ans : chef de groupe OPS puis poste organique cadre de maîtrise"]],
+ methode:"Le calage 10 minutes (oral) : intro 1 min 30 (accroche, définition, problématique, plan) · 2-3 parties 7 min (chiffres + exemples + rôle chef de groupe) · conclusion 1 min 30 (réponse, synthèse, ouverture). Le DTP : 2 h, 4 rubriques = barème 4/6/4/6."
+}
+};
+
+</script>
+<script>
+(function(){
+"use strict";
+var D=window.D;
+var K={prog:"bht-prog-v1",quiz:"bht-quiz-v1",dtp:"bht-dtp-v1",notes:"bht-notes-v1",ui:"bht-ui-v1"};
+var STATES=["afaire","fiche","quiz","pret"];
+var SLBL={afaire:"À faire",fiche:"Fiche faite",quiz:"Quiz réussi",pret:"PRÊT ORAL"};
+var SEMO={afaire:"○",fiche:"◔",quiz:"◕",pret:"●"};
+var SCL={afaire:"#e05b4b",fiche:"#e0a83b",quiz:"#4ba6e0",pret:"#3fce6b"};
+var ALLQ=[];
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function ls(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function loadState(){
+  var prog=ls(K.prog,null)||{};
+  D.THEMES.forEach(function(t){if(!prog[t.n])prog[t.n]=t.etat||"afaire";});
+  var ui=ls(K.ui,null)||{tab:"home",theme:0,qmode:"theme",qsel:1};
+  return {prog:prog,ui:ui,quiz:ls(K.quiz,null)||{},dtp:ls(K.dtp,null)||{},notes:ls(K.notes,null)||{}};
+}
+var S=loadState();
+function save(){sv(K.prog,S.prog);sv(K.ui,S.ui);sv(K.quiz,S.quiz);sv(K.dtp,S.dtp);sv(K.notes,S.notes);}
+function theme(n){for(var i=0;i<D.THEMES.length;i++){if(D.THEMES[i].n===n)return D.THEMES[i];}return null;}
+function buildQuiz(){
+  ALLQ=[];
+  D.THEMES.forEach(function(t){t.quiz.forEach(function(q,i){ALLQ.push({n:t.n,titre:t.titre,q:q,i:i});});});
+}
+function progPct(){
+  var v={afaire:0,fiche:1,quiz:2,pret:3},tot=0,sum=0;
+  D.THEMES.forEach(function(t){tot+=3;sum+=v[S.prog[t.n]]||0;});
+  return tot?Math.round(100*sum/tot):0;
+}
+function quizTot(t){
+  var q=S.quiz[t.n];if(!q)return{ok:0,tot:t.quiz.length};
+  var ok=0;t.quiz.forEach(function(x,i){if(q[i])ok++;});
+  return{ok:ok,tot:t.quiz.length};
+}
+function cycle(n){
+  if(S.prog[n]==="pret")return; // protégé : reset uniquement via le bouton dédié
+  var i=STATES.indexOf(S.prog[n]);S.prog[n]=STATES[(i+1)%STATES.length];
+  if(S.prog[n]==="quiz"){var z=quizTot(theme(n));if(z.ok<z.tot)S.prog[n]="fiche";}
+  save();renderApp();
+}
+function resetTheme(n){S.prog[n]="afaire";save();renderApp();}
+function donut(pct){
+  var r=52,c=2*Math.PI*r,off=c*(1-pct/100);
+  return '<svg viewBox="0 0 130 130" class="donut"><circle cx="65" cy="65" r="'+r+'" class="d-b"/><circle cx="65" cy="65" r="'+r+'" class="d-f" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'"/><text x="65" y="61" class="d-t">'+pct+'%</text><text x="65" y="80" class="d-s">avancement</text></svg>';
+}
+function tirage(){
+  var pool=D.THEMES.filter(function(t){return S.prog[t.n]!=="pret";});
+  if(!pool.length)pool=D.THEMES.slice();
+  var r=Math.random();
+  if(r<0.15){var s=D.SURPRISES[Math.floor(Math.random()*D.SURPRISES.length)];return{type:"surprise",txt:s};}
+  var t=pool[Math.floor(Math.random()*pool.length)];
+  return{type:"theme",n:t.n,txt:t.titre};
+}
+/* ---------- CHRONO ---------- */
+var TIM={id:null,mode:null,end:0,left:0,run:false,jalons:[],next:0};
+var CHRONOS={
+  oral:{label:"Oral 10 minutes",total:600,jalons:[[90,"Fin de l'introduction — lance la partie I"],[240,"Fin de la partie I — passe à la partie II"],[390,"Fin de la partie II — passe à la partie III"],[510,"Fin de la partie III — conclusion !"],[600,"STOP — 10 minutes écoulées"]]},
+  dtp:{label:"DTP 2 heures",total:7200,jalons:[[600,"Fin de la lecture du sujet — commence I. Alerte"],[2100,"Fin de I. Alerte — attaque l'ASLL (6 pts)"],[4900,"Fin de l'ASLL — passe aux actions (4 pts)"],[7100,"Fin des actions — PASSATION (6 pts)"],[7200,"STOP — rends ta copie"]]},
+  qmf:{label:"Épreuve sportive (préparation)",total:600,jalons:[[300,"Moitié du temps — garde du rythme"],[480,"1 minute 20 restantes"],[600,"STOP"]]}
+};
+function tmStart(mode){tmStop();TIM.mode=mode;TIM.left=CHRONOS[mode].total;TIM.next=0;TIM.run=true;TIM.end=Date.now()+TIM.left*1000;TIM.id=setInterval(tmTick,500);renderChrono();}
+function tmStop(){if(TIM.id){clearInterval(TIM.id);TIM.id=null;}TIM.run=false;}
+function tmReset(){tmStop();TIM.mode=null;TIM.left=0;renderChrono();}
+function tmTick(){
+  TIM.left=Math.max(0,Math.round((TIM.end-Date.now())/1000));
+  var c=CHRONOS[TIM.mode],j=c.jalons;
+  while(TIM.next<j.length&&TIM.left<=c.total-j[TIM.next][0]){
+    vib([300,150,300]);if(TIM.next===j.length-1)vib([600]);
+    TIM.next++;
+  }
+  if(TIM.left<=0){tmStop();vib([600,200,600,200,600]);}
+  renderChrono();
+}
+function vib(p){try{if(navigator.vibrate)navigator.vibrate(p);}catch(e){}}
+function fmt(s){var m=Math.floor(s/60),x=s%60;return (m<10?"0":"")+m+":"+(x<10?"0":"")+x;}
+/* ---------- QUIZ ---------- */
+var Q={list:[],idx:0,score:0,answered:false,lastMode:null,themeN:0};
+function quizStart(mode,n){
+  if(mode==="theme"){
+    var t=theme(n);Q.list=ALLQ.filter(function(x){return x.n===n;}).map(function(x){return{x:x,done:false,ok:false};});
+    Q.themeN=n;
+  }else if(mode==="fail"){
+    var f=[];D.THEMES.forEach(function(t){var z=S.quiz[t.n]||{};t.quiz.forEach(function(q,i){if(z[i]===false)f.push({n:t.n,titre:t.titre,q:q,i:i});});});
+    Q.list=f.map(function(x){return{x:x,done:false,ok:false};});
+  }else{
+    var arr=ALLQ.slice();
+    for(var i=arr.length-1;i>0;i--){var jx=Math.floor(Math.random()*(i+1)),tmp=arr[i];arr[i]=arr[jx];arr[jx]=tmp;}
+    Q.list=arr.map(function(x){return{x:x,done:false,ok:false};});
+  }
+  Q.idx=0;Q.score=0;Q.answered=false;Q.lastMode=mode;
+  renderApp("quiz");
+}
+function quizAnswer(oi){
+  if(Q.answered)return;
+  Q.answered=true;
+  var cur=Q.list[Q.idx],ok=(oi===cur.x.q.a);
+  cur.done=true;cur.ok=ok;
+  if(ok)Q.score++;
+  var qz=S.quiz[cur.x.n]=S.quiz[cur.x.n]||{};
+  qz[cur.x.i]=ok;
+  var t=theme(cur.x.n),z=quizTot(t);
+  if(z.ok>=z.tot&&(S.prog[t.n]==="fiche"||S.prog[t.n]==="afaire"))S.prog[t.n]="quiz";
+  save();renderApp("quiz");
+}
+function quizNext(){
+  Q.idx++;Q.answered=false;
+  if(Q.idx>=Q.list.length){Q.idx=Q.list.length;renderApp("quiz");return;}
+  renderApp("quiz");
+}
+/* ---------- RENDER ---------- */
+var lastTab=null;
+function renderApp(tab){
+  if(tab)S.ui.tab=tab;
+  save();
+  var el=document.getElementById("app");if(!el)return;
+  el.innerHTML=viewTab(S.ui.tab);
+  var tb=document.getElementById("tabbar");
+  if(tb)tb.innerHTML=tabbar();
+  if(lastTab!==S.ui.tab){window.scrollTo(0,0);lastTab=S.ui.tab;}
+}
+function tabbar(){
+  var tabs=[["home","🏠","Accueil"],["oral","🎤","Oral"],["quiz","✅","Quiz"],["dtp","✍️","DTP"],["chrono","⏱️","Chrono"],["cdg","⭐","CDG"]];
+  return tabs.map(function(t){
+    return '<button class="tb'+(S.ui.tab===t[0]?" on":"")+'" onclick="window.__BHT_APP.tab(\''+t[0]+'\')"><span class="tb-i">'+t[1]+'</span><span class="tb-l">'+t[2]+'</span></button>';
+  }).join("");
+}
+function viewTab(t){
+  if(t==="oral")return viewOral();
+  if(t==="quiz")return viewQuiz();
+  if(t==="dtp")return viewDTP();
+  if(t==="chrono")return viewChrono();
+  if(t==="cdg")return viewCDG();
+  return viewHome();
+}
+function head(t,s){return '<div class="head"><h1>'+t+'</h1><p class="sub">'+s+'</p></div>';}
+function viewHome(){
+  var pct=progPct();
+  var cnt={afaire:0,fiche:0,quiz:0,pret:0};
+  D.THEMES.forEach(function(t){cnt[S.prog[t.n]]++;});
+  var nextT=null;
+  D.THEMES.forEach(function(t){if(!nextT&&S.prog[t.n]!=="pret")nextT=t;});
+  var qok=0;D.THEMES.forEach(function(t){qok+=quizTot(t).ok;});
+  var h='<div class="head"><h1>Révision BHT</h1><p class="sub">'+esc(D.META.sub)+' — v'+D.META.version+' · '+D.META.date+'</p></div>';
+  h+='<div class="grid2"><div class="card center">'+donut(pct)+'</div>';
+  h+='<div class="card"><h3>État des 21 thèmes</h3><div class="statrow"><span style="color:'+SCL.pret+'">● Prêt oral</span><b>'+cnt.pret+'</b></div><div class="statrow"><span style="color:'+SCL.quiz+'">◕ Quiz réussi</span><b>'+cnt.quiz+'</b></div><div class="statrow"><span style="color:'+SCL.fiche+'">◔ Fiche faite</span><b>'+cnt.fiche+'</b></div><div class="statrow"><span style="color:'+SCL.afaire+'">○ À faire</span><b>'+cnt.afaire+'</b></div><hr><div class="statrow"><span>Quiz réussis</span><b>'+qok+' / '+ALLQ.length+'</b></div></div></div>';
+  h+='<div class="grid2"><div class="card"><h3>🎯 Action du jour</h3>'+(nextT?
+    '<p>Prochain thème à travailler : <b>'+nextT.n+'. '+esc(nextT.titre)+'</b></p><button class="btn" onclick="window.__BHT_APP.openTheme('+nextT.n+')">Ouvrir le thème '+nextT.n+'</button>'
+    :'<p>Tous les thèmes sont prêts ! Entretiens ton niveau : marathon quiz, sujets surprises, oraux blancs chronométrés.</p>')+'</div>';
+  h+='<div class="card"><h3>🎲 Sujet au hasard</h3><p>Un sujet tiré au sort — traite-le en 10 minutes chrono.</p><button class="btn" onclick="window.__BHT_APP.draw()">Tirer un sujet</button><div id="drawbox"></div></div></div>';
+  h+='<div class="card"><h3>⏱️ Accès rapide</h3><div class="grid3">'+
+   '<button class="btn sm" onclick="window.__BHT_APP.tab(\'chrono\');window.__BHT_APP.start(\'oral\')">Oral 10 min</button>'+
+   '<button class="btn sm" onclick="window.__BHT_APP.tab(\'chrono\');window.__BHT_APP.start(\'dtp\')">DTP 2 h</button>'+
+   '<button class="btn sm" onclick="window.__BHT_APP.quizStart(\'all\',0)">Marathon quiz</button>'+
+   '<button class="btn sm" onclick="window.__BHT_APP.tab(\'dtp\')">Épreuve écrite</button>'+
+   '<button class="btn sm" onclick="window.__BHT_APP.tab(\'cdg\')">Fiche chef de groupe</button>'+
+   '<button class="btn sm" onclick="window.__BHT_APP.quizStart(\'fail\',0)">Mes erreurs</button></div></div>';
+  return h;
+}
+function viewOral(){
+  var h=head("🎤 Oral — 21 thèmes","Tapote un thème pour ouvrir le script 10 minutes. Tapote le badge pour faire évoluer ton avancement.");
+  D.THEMES.forEach(function(t){
+    var st=S.prog[t.n];
+    h+='<div class="acc"><button class="acc-h" onclick="window.__BHT_APP.openTheme('+t.n+')"><span class="tnum">'+t.n+'</span><span class="ttit">'+esc(t.titre)+(t.full?"":' <span class="warn">[fiche à faire]</span>')+'</span><span class="badge" style="background:'+SCL[st]+'">'+SEMO[st]+'</span></button>';
+    if(S.ui.theme===t.n){
+      h+='<div class="acc-b">';
+      h+='<div class="tips"><b>Accroche :</b> '+esc(t.accroche)+'</div>';
+      h+='<div class="tips"><b>Problématique :</b> '+esc(t.pb)+'</div>';
+      t.parties.forEach(function(p){
+        h+='<div class="part"><h4>'+esc(p.t)+'</h4><ul>'+p.pts.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul></div>';
+      });
+      h+='<div class="tips ccl"><b>Conclusion :</b> '+esc(t.ccl)+'</div>';
+      h+='<div class="tips qj"><b>Question jury :</b> '+esc(t.qj.q)+'<br><b>Réponse :</b> '+esc(t.qj.r)+'</div>';
+      h+='<div class="grid2"><button class="btn sm" onclick="window.__BHT_APP.quizStart(\'theme\','+t.n+')">Quiz du thème ('+t.quiz.length+' q.)</button>'+
+       '<button class="btn sm" onclick="window.__BHT_APP.tab(\'chrono\');window.__BHT_APP.start(\'oral\')">Oral blanc 10 min</button></div>';
+      if(S.prog[t.n]==="pret")h+='<button class="btn sm" onclick="window.__BHT_APP.resetTheme('+t.n+')">↺ Revenir à « à faire »</button>';
+      h+='<div class="note"><textarea placeholder="Tes notes personnelles sur ce thème (astuces, chiffres à retenir)…" oninput="window.__BHT_APP.note('+t.n+',this.value)">'+esc(S.notes[t.n]||"")+'</textarea></div>';
+      h+='</div>';
+    }
+    h+='</div>';
+  });
+  h+='<p class="foot">Avancement : tapote le badge couleur du thème — À faire → Fiche → Quiz → Prêt oral.</p>';
+  return h;
+}
+function viewQuiz(){
+  if(Q.list.length&&Q.idx<Q.list.length){
+    var cur=Q.list[Q.idx],q=cur.x.q;
+    var h=head("✅ Quiz — "+(Q.lastMode==="theme"?"thème "+cur.x.n:Q.lastMode==="fail"?"mes erreurs":"marathon"),"Question "+(Q.idx+1)+" / "+Q.list.length+" · Score : "+Q.score);
+    h+='<div class="card qcard"><div class="qmeta">Thème '+cur.x.n+' — '+esc(cur.x.titre)+'</div>';
+    h+='<div class="qq">'+esc(q.q)+'</div><div class="opts">';
+    q.opts.forEach(function(o,i){
+      var cls="opt";
+      if(Q.answered){
+        if(i===q.a)cls+=" ok";
+        else if(i===Q.lastPick)cls+=" ko";
+      }
+      h+='<button class="'+cls+'" onclick="window.__BHT_APP.pick('+i+')">'+String.fromCharCode(65+i)+". "+esc(o)+'</button>';
+    });
+    h+='</div>';
+    if(Q.answered){
+      h+='<div class="expl '+(Q.lastOk?"good":"bad")+'">'+(Q.lastOk?"✔ Bonne réponse":"✘ Faux — réponse : "+String.fromCharCode(65+q.a))+' — '+esc(q.ex)+'</div>';
+      h+='<button class="btn" onclick="window.__BHT_APP.next()">'+(Q.idx+1<Q.list.length?"Question suivante →":"Voir le résultat")+'</button>';
+    }
+    h+='</div>';
+    return h;
+  }
+  if(Q.list.length&&Q.idx>=Q.list.length){
+    var pctq=Math.round(100*Q.score/Q.list.length);
+    var h=head("✅ Résultat",Q.lastMode==="theme"?"Thème "+Q.themeN:Q.lastMode==="fail"?"Mes erreurs":"Marathon");
+    h+='<div class="card center"><div class="bigscore">'+Q.score+' / '+Q.list.length+'</div><div class="'+(pctq>=80?"good":"bad")+'">'+pctq+'% — '+(pctq>=80?"Validé ✔":pctq>=50?"Presque — refais-le":"À retravailler")+'</div></div>';
+    h+='<div class="grid2"><button class="btn sm" onclick="window.__BHT_APP.quizStart(\''+(Q.lastMode||"all")+'\','+Q.themeN+')">Recommencer</button><button class="btn sm" onclick="window.__BHT_APP.quizEnd()">Retour aux quiz</button></div>';
+    return h;
+  }
+  var h=head("✅ Quiz","Réponse et explication immédiates après chaque question — comme au combat, on corrige tout de suite.");
+  h+='<div class="card"><h3>Par thème</h3><div class="tgrid">';
+  D.THEMES.forEach(function(t){
+    var z=quizTot(t);
+    h+='<button class="tqbtn" onclick="window.__BHT_APP.quizStart(\'theme\','+t.n+')"><b>'+t.n+'</b> '+esc(t.titre)+'<span class="qsc">'+z.ok+'/'+z.tot+'</span></button>';
+  });
+  h+='</div></div>';
+  h+='<div class="grid3">'+
+   '<button class="btn sm" onclick="window.__BHT_APP.quizStart(\'all\',0)">🧨 Marathon — '+ALLQ.length+' questions</button>'+
+   '<button class="btn sm" onclick="window.__BHT_APP.quizStart(\'fail\',0)">❌ Mes erreurs</button></div>';
+  return h;
+}
+function viewDTP(){
+  var d=D.DTP;
+  var h=head("✍️ DTP — épreuve écrite","Devoir technique professionnel : 2 heures, chef d'agrès FI. Barème /20 : alerte 4 · ASLL 6 · actions 4 · passation 6.");
+  h+='<div class="grid2"><div class="card"><h3>Format</h3>'+d.format.map(function(r){return '<div class="statrow"><span>'+r[0]+'</span><b>'+esc(r[1])+'</b></div>';}).join("")+'</div>';
+  h+='<div class="card"><h3>⏱️ Timing 2 heures</h3>'+d.timing.map(function(r){return '<div class="statrow"><span>'+r[0]+'</span><b>'+esc(r[1])+'</b></div>';}).join("")+'</div></div>';
+  h+='<div class="card warn"><h3>Règle d\u2019or</h3><p>'+esc(d.regle)+'</p></div>';
+  d.trame.forEach(function(sec,si){
+    var open=S.ui.dtpOpen===si;
+    h+='<div class="acc"><button class="acc-h" onclick="window.__BHT_APP.dtpToggle('+si+')"><span class="ttit">'+esc(sec.t)+'</span><span class="chev">'+(open?"▾":"▸")+'</span></button>';
+    if(open){
+      h+='<div class="acc-b">';
+      sec.subs.forEach(function(sub,sb){
+        var ck=(S.dtp["c"+si+"_"+sb])?"☑":"☐";
+        h+='<div class="part"><h4>'+ck+' '+esc(sub.h)+'</h4><ul>'+sub.pts.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul></div>';
+      });
+      h+='<button class="btn sm" onclick="window.__BHT_APP.dtpDone('+si+')">Section révisée ✔</button></div>';
+    }
+    h+='</div>';
+  });
+  h+='<div class="card"><h3>⚡ 10 réflexes DTP</h3><ol class="reflex">'+d.reflexes.map(function(r){return "<li>"+esc(r)+"</li>";}).join("")+'</ol></div>';
+  h+='<div class="card"><h3>📚 Glossaire</h3><table class="tbl"><tr><th>Sigle</th><th>Sens</th></tr>'+d.glossaire.map(function(g){return '<tr><td><b>'+esc(g[0])+'</b></td><td>'+esc(g[1])+'</td></tr>';}).join("")+'</table></div>';
+  var exOpen=S.ui.exOpen;
+  h+='<div class="acc"><button class="acc-h" onclick="window.__BHT_APP.exToggle()"><span class="ttit">🎓 '+esc(D.DTP.exemple.t)+' (corrigé type)</span><span class="chev">'+(exOpen?"▾":"▸")+'</span></button>';
+  if(exOpen){h+='<div class="acc-b"><ul>'+D.DTP.exemple.pts.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul></div>';}
+  h+='</div>';
+  return h;
+}
+function viewChrono(){
+  var c=TIM.mode?CHRONOS[TIM.mode]:null;
+  var left=TIM.mode?TIM.left:0;
+  var h=head("⏱️ Chronos","Oral 10 minutes jalonné · DTP 2 heures · vibreur à chaque jalon.");
+  h+='<div class="card center chrono">';
+  if(c){
+    var tot=c.total,pct=Math.round(100*(tot-left)/tot);
+    var jn=c.jalons[Math.max(0,TIM.next-1)];
+    var phase=TIM.next===0?"En route — jalon 1 à "+fmt(c.total-c.jalons[0][0]):"Jalon "+TIM.next+" / "+(c.jalons.length-1)+" — "+esc(jn[1]);
+    h+='<div class="bigtime">'+fmt(left)+'</div><div class="plabel">'+esc(c.label)+'</div>';
+    h+='<div class="pbar"><div style="width:'+pct+'%"></div></div>';
+    h+='<div class="phase">'+phase+'</div>';
+    var jl=c.jalons.map(function(j,i){return '<div class="statrow"><span>'+fmt(tot-j[0])+' — '+esc(j[1])+'</span><b>'+(i<TIM.next?"✓":"")+'</b></div>';}).join("");
+    h+=jl;
+    h+='<div class="grid3">'+(TIM.run?'<button class="btn sm" onclick="window.__BHT_APP.pause()">⏸ Pause</button>':'<button class="btn sm" onclick="window.__BHT_APP.resume()">▶ Reprendre</button>')+'<button class="btn sm" onclick="window.__BHT_APP.reset()">⟲ Reset</button></div>';
+  }else{
+    h+='<div class="bigtime">10:00</div><p>Choisis une épreuve :</p>';
+  }
+  h+='</div>';
+  h+='<div class="grid3">'+
+   '<button class="btn sm" onclick="window.__BHT_APP.start(\'oral\')">🎤 Oral 10 min</button>'+
+   '<button class="btn sm" onclick="window.__BHT_APP.start(\'dtp\')">✍️ DTP 2 h</button>'+
+   '<button class="btn sm" onclick="window.__BHT_APP.start(\'qmf\')">💪 Sport 10 min</button></div>';
+  h+='<div class="card"><h3>🎲 Tirage de sujet</h3><p>Tirage au sort parmi les thèmes pas encore prêts + sujets surprises.</p><button class="btn" onclick="window.__BHT_APP.draw()">Tirer un sujet</button><div id="drawbox"></div></div>';
+  return h;
+}
+function viewCDG(){
+  var c=D.CDG;
+  var h=head("⭐ Chef de groupe","Le rôle, les chiffres clés, la méthode — ta feuille de route BHT.");
+  h+='<div class="card"><h3>Mon rôle de chef de groupe</h3><ul class="role">'+c.role.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+'</ul></div>';
+  h+='<div class="card"><h3>Chiffres à connaître par cœur</h3><div class="grid3">'+c.chiffres.map(function(x){return '<div class="kpi"><b>'+esc(x[0])+'</b><span>'+esc(x[1])+'</span></div>';}).join("")+'</div></div>';
+  h+='<div class="card"><h3>⏱️ Calage de l\u2019oral (10 min)</h3><table class="tbl"><tr><th>Temps</th><th>Étape</th><th>Contenu</th></tr>'+D.CALAGE.map(function(r){return '<tr><td><b>'+r.t+'</b></td><td>'+esc(r.p)+'</td><td>'+esc(r.d)+'</td></tr>';}).join("")+'</table></div>';
+  h+='<div class="card"><h3>🔨 Règles d\u2019or de l\u2019oral</h3><ol class="reflex">'+D.REGLESOR.map(function(r){return "<li>"+esc(r)+"</li>";}).join("")+'</ol></div>';
+  h+='<div class="card"><h3>🔗 Liens transversaux</h3><ul class="role">'+D.TRANSVERSAL.map(function(r){return "<li>"+esc(r)+"</li>";}).join("")+'</ul></div>';
+  h+='<div class="card"><h3>🎯 La méthode</h3><p>'+esc(c.methode)+'</p></div>';
+  return h;
+}
+function drawBox(){
+  var box=document.getElementById("drawbox");if(!box)return;
+  var d=tirage();
+  var btn=d.type==="theme"?'<button class="btn sm" onclick="window.__BHT_APP.openTheme('+d.n+')">Ouvrir le thème</button>':"";
+  var chro='<button class="btn sm" onclick="window.__BHT_APP.tab(\'chrono\');window.__BHT_APP.start(\'oral\')">Chrono 10 min</button>';
+  box.innerHTML='<div class="drawcard"><div class="dtag">'+(d.type==="theme"?"Thème "+d.n:"SUJET SURPRISE")+'</div><div class="dtxt">'+esc(d.txt)+'</div><div class="grid2">'+btn+chro+'</div></div>';
+}
+/* ---------- API ---------- */
+var API={
+  D:D,state:S,keys:K,ALLQ:function(){return ALLQ;},
+  tab:function(t){renderApp(t);},
+  openTheme:function(n){S.ui.tab="oral";S.ui.theme=(S.ui.theme===n?0:n);save();renderApp();var el=document.getElementById("acc-"+n);if(el&&el.scrollIntoView)el.scrollIntoView({behavior:"smooth"});},
+  cycle:cycle,resetTheme:resetTheme,
+  draw:function(){drawBox();},
+  note:function(n,v){S.notes[n]=v;sv(K.notes,S.notes);},
+  quizStart:quizStart,quizAnswer:quizAnswer,quizNext:quizNext,
+  pick:function(i){Q.lastPick=i;Q.lastOk=(i===Q.list[Q.idx].x.q.a);quizAnswer(i);},
+  next:function(){quizNext();},
+  quizEnd:function(){Q.list=[];Q.idx=0;renderApp("quiz");},
+  dtpToggle:function(si){S.ui.dtpOpen=(S.ui.dtpOpen===si?-1:si);save();renderApp("dtp");},
+  exToggle:function(){S.ui.exOpen=!S.ui.exOpen;save();renderApp("dtp");},
+  dtpDone:function(si){var d=D.DTP.trame[si];d.subs.forEach(function(x,sb){S.dtp["c"+si+"_"+sb]=true;});save();renderApp("dtp");},
+  start:tmStart,pause:function(){if(TIM.run){clearInterval(TIM.id);TIM.id=null;TIM.run=false;}renderChrono();},
+  resume:function(){if(TIM.mode&&!TIM.run){TIM.end=Date.now()+TIM.left*1000;TIM.run=true;TIM.id=setInterval(tmTick,500);}renderChrono();},
+  reset:tmReset,
+  timerState:function(){return{mode:TIM.mode,left:TIM.left,run:TIM.run,next:TIM.next};},
+  qState:function(){return{idx:Q.idx,len:Q.list.length,score:Q.score,answered:Q.answered,cur:(Q.list[Q.idx]?Q.list[Q.idx].x:null),mode:Q.lastMode};},
+  chronos:function(){return CHRONOS;},
+  _tick:tmTick,
+  progPct:progPct
+};;
+function renderChrono(){if(S.ui.tab==="chrono")renderApp("chrono");}
+buildQuiz();
+window.__BHT_APP=API;
+if(typeof navigator!=="undefined"&&navigator.serviceWorker){
+  try{navigator.serviceWorker.register("sw.js").catch(function(){});}catch(e){}
+}
+function boot(){
+  if(document.getElementById("tabbar"))document.getElementById("tabbar").innerHTML=tabbar();
+  renderApp(S.ui.tab);
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",boot);}else{boot();}
+if(typeof module!=="undefined"&&module.exports){module.exports=API;}
+})();
+
+</script>
+</body>
+</html>
